@@ -3,10 +3,12 @@ import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import { Container, Box } from "@mui/material";
 import { cyan } from "@mui/material/colors";
 import NavBarMain from "./NavBarMain";
-import Resturant from "./components/resturant/Resturant";
+import ApnaCartHome from "./components/CartHome/ApnaCartHome";
 import Cart from "./components/pages/Cart";
 import About from "./components/pages/About";
 import AddProduct from "./components/pages/AddProduct";
+import ProductDetail from "./components//pages//ProductDetail";
+import Footer from "./components/CartHome/Footer";
 
 const App = () => {
   return (
@@ -24,11 +26,13 @@ const App = () => {
         >
           <NavBarMain />
           <Routes>
-            <Route path="/" element={<Resturant />} />
+            <Route path="/" element={<ApnaCartHome />} />
             <Route path="/cart" element={<Cart />} />
             <Route path="/about" element={<About />} />
             <Route path="/add_product" element={<AddProduct />} />
+            <Route path="/:mediaType/:id" element={<ProductDetail />} />
           </Routes>
+          <Footer />
         </Box>
       </Container>
     </Router>

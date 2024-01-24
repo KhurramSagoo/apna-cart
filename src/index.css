@@ -3,3 +3,8 @@ import '@fontsource/roboto/400.css';
 import '@fontsource/roboto/500.css';
 import '@fontsource/roboto/700.css';
 
+.product-div:hover {
+    transform: scale(1.02);
+    animation: transform 0.5s ease-in-out;
+  }
+  

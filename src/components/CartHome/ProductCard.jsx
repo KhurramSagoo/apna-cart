@@ -18,6 +18,7 @@ import { useEffect, useState } from "react";
 import InfoIcon from "@mui/icons-material/Info";
 import CloseIcon from "@mui/icons-material/Close";
 import "./style.css";
+import { useNavigate } from "react-router-dom";
 
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
@@ -34,7 +35,8 @@ const ExpandMore = styled((props) => {
   }),
 }));
 
-export default function RecipeCard({ product }) {
+export default function ProductCard({ product }) {
+  const navigate = useNavigate();
   // console.log(product);
   //   id: 1,
   //   title: 'Fjallraven - Foldsack No. 1 Backpack, Fits 15 Laptops',
@@ -85,6 +87,7 @@ export default function RecipeCard({ product }) {
           margin: "10px",
           overflow: "hidden",
         }}
+        onClick={() => navigate(`/${category}/${id}`)}
       >
         <CardHeader
           avatar={
@@ -167,7 +170,7 @@ export default function RecipeCard({ product }) {
             </Typography>
           </Button>
 
-          <Modal
+          {/* <Modal
             open={open}
             onClose={handleClose}
             aria-labelledby="modal-modal-title"
@@ -185,18 +188,18 @@ export default function RecipeCard({ product }) {
                 }}
               />
               {/* <Typography paragraph>Ingredients:</Typography> */}
-              {/* <Typography paragraph key={id}>
+          {/* <Typography paragraph key={id}>
                 {product.map((element, id) => (
                   <ul key={id}>
                     <li>{element}</li>
                   </ul>
                 ))}
               </Typography> */}
-              <Typography>
-                {description}
-                {/* {description.slice(0, 220)} */}
-              </Typography>
-              <Button
+          {/* <Typography> */}
+          {/* {description} */}
+          {/* {description.slice(0, 220)} */}
+          {/* </Typography> */}
+          {/* <Button
                 variant="outlined"
                 onClick={handleClose}
                 style={{
@@ -210,9 +213,9 @@ export default function RecipeCard({ product }) {
               >
                 Close
                 <CloseIcon />
-              </Button>
-            </Box>
-          </Modal>
+              </Button> */}
+          {/* </Box> */}
+          {/* </Modal> */}
         </CardActions>
         <Collapse in={expanded} timeout="auto" unmountOnExit>
           <CardContent></CardContent>

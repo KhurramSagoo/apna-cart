@@ -1,4 +1,14 @@
-import { Box, Button, Container, Grid, InputLabel, MenuItem, OutlinedInput, Select, TextField } from "@mui/material";
+import {
+  Box,
+  Button,
+  Container,
+  Grid,
+  InputLabel,
+  MenuItem,
+  OutlinedInput,
+  Select,
+  TextField,
+} from "@mui/material";
 import axios from "axios";
 import React, { useState } from "react";
 import Snackbar from "@mui/material/Snackbar";
@@ -89,187 +99,159 @@ const AddProduct = () => {
 
   return (
     <Container maxWidth="lg">
-    
       <Box
         component="form"
         sx={{
           "& > :not(style)": { m: 1, width: "25ch" },
         }}
-
         noValidate
         autoComplete="off"
       >
-        {/* <form noValidate autoComplete="off">
-          <FormControl sx={{ width: "25ch" }}>
+        <div
+          style={{
+            width: "100%",
+            height: "86vh",
+            display: "grid",
+            flexWrap: "wrap",
+            alignItems: "center",
+            justifyContent: "center",
+            flexDirection: "column",
+          }}
+        >
+          <h2>Add Product</h2>
+          <div>
             <TextField
               id="outlined-basic"
-              label="Price"
+              label="Title"
               variant="outlined"
+              // value={newProductData.title}
               // size=""
+              onChange={handleInputChange}
+              size="small"
             />
-            <OutlinedInput placeholder="Please enter text" />
-            <MyFormHelperText />
-          </FormControl>
-        </form> */}
-        <div 
-        style={{
-          width:"100%",
-          height:"86vh",
-          display:"grid",
-          flexWrap:"wrap",
-          alignItems:"center",
-          justifyContent:"center",
-          flexDirection:"column",
-          // padding:"0 auto"
-
-
-        }}>
-
-        <h2>Add Product</h2>
-        <div>
-          
-          <TextField
-            id="outlined-basic"
-            label="Title"
-            variant="outlined"
-            // value={newProductData.title}
-            // size=""
-            onChange={handleInputChange}
-            size="small"
-            
-          />
-          {/* <input
+            {/* <input
             type="text"
             name="title"
             value={newProductData.title}
             onChange={handleInputChange}
           /> */}
-        </div>
-        <div>
-          {/* <label>Price:</label> */}
-          <TextField
-            id="outlined-basic"
-            label="Price"
-            variant="outlined"
-            type="number"
-            // value={newProductData.price}
-            // value={newProductData.price}
-            // onChange={handleInputChange}
-            size="small"
+          </div>
+          <div>
+            {/* <label>Price:</label> */}
+            <TextField
+              id="outlined-basic"
+              label="Price"
+              variant="outlined"
+              type="number"
+              // value={newProductData.price}
+              // value={newProductData.price}
+              // onChange={handleInputChange}
+              size="small"
 
-            // size=""
-          />
-          {/* <input
+              // size=""
+            />
+            {/* <input
             type="number"
             name="price"
             value={newProductData.price}
             onChange={handleInputChange}
           /> */}
-        </div>
-        <div>
-          {/* <label>Description:</label> */}
-          <TextField
-            id="outlined-multiline-static"
-            label="Description"
-            multiline
-            // rows={4}
-            defaultValue="Write in detail about product"
-            // value={newProductData.description}
-            // onChange={handleInputChange}
-            // size="small"
-          />
-          {/* <textarea
+          </div>
+          <div>
+            {/* <label>Description:</label> */}
+            <TextField
+              id="outlined-multiline-static"
+              label="Description"
+              multiline
+              // rows={4}
+              defaultValue="Write in detail about product"
+              // value={newProductData.description}
+              // onChange={handleInputChange}
+              // size="small"
+            />
+            {/* <textarea
             name="description"
             value={newProductData.description}
             onChange={handleInputChange}
           /> */}
-        </div>
-        <div>
-        <FormControl fullWidth>
-          <InputLabel id="category-label">Category</InputLabel>
-          <br />
-          <Select
-            labelId="category-label"
-            id="category"
-            name="category"
-            value={newProductData.category}
-            onChange={handleInputChange}
-            size="small"
-            fullWidth
-
+          </div>
+          <div>
+            <FormControl fullWidth>
+              <InputLabel id="category-label">Category</InputLabel>
+              <br />
+              <Select
+                labelId="category-label"
+                id="category"
+                name="category"
+                value={newProductData.category}
+                onChange={handleInputChange}
+                size="small"
+                fullWidth
+              >
+                <MenuItem value="men's clothing">Men's Clothing</MenuItem>
+                <MenuItem value="jewelry">Jewelry</MenuItem>
+                <MenuItem value="electronics">Electronics</MenuItem>
+                <MenuItem value="women's clothing">Women's Clothing</MenuItem>
+              </Select>
+            </FormControl>
+          </div>
+          <div>
+            {/* <label>Image URL:</label> */}
+            <TextField
+              id="outlined-basic"
+              label="Image URL"
+              variant="outlined"
+              // value={newProductData.title}
+              // size=""
+              onChange={handleInputChange}
+              size="small"
+            />
+          </div>
+          <div>
+            {/* <label>Rating Rate:</label> */}
+            <TextField
+              id="outlined-basic"
+              label="Rating Rate"
+              variant="outlined"
+              type="number"
+              size="small"
+            />
+          </div>
+          <div>
+            <TextField
+              id="outlined-basic"
+              label="Rating Count"
+              variant="outlined"
+              type="number"
+              size="small"
+            />
+          </div>
+          <Button
+            onClick={addNewProduct}
+            variant="contained"
+            style={{
+              backgroundColor: "cyan[500]",
+            }}
           >
-            <MenuItem value="men's clothing">Men's Clothing</MenuItem>
-            <MenuItem value="jewelry">Jewelry</MenuItem>
-            <MenuItem value="electronics">Electronics</MenuItem>
-            <MenuItem value="women's clothing">Women's Clothing</MenuItem>
-          </Select>
-        </FormControl>
-          
-        </div>
-        <div>
-          {/* <label>Image URL:</label> */}
-          <TextField
-            id="outlined-basic"
-            label="Image URL"
-            variant="outlined"
-            // value={newProductData.title}
-            // size=""
-            onChange={handleInputChange}
-            size="small"
-            
-          />
-        </div>
-        <div>
-          {/* <label>Rating Rate:</label> */}
-          <TextField
-            id="outlined-basic"
-            label="Rating Rate"
-            variant="outlined"
-            type="number"
-            // value={newProductData.price}
-            // value={newProductData.price}
-            // onChange={handleInputChange}
-            size="small"
-
-            // size=""
-          />
-        </div>
-        <div>
-           <TextField
-            id="outlined-basic"
-            label="Rating Count"
-            variant="outlined"
-            type="number"
-            // value={newProductData.price}
-            // value={newProductData.price}
-            // onChange={handleInputChange}
-            size="small"
-
-            // size=""
-          />
-        </div>
-        <Button onClick={addNewProduct} variant="contained" style={{
-          backgroundColor:"cyan[500]"
-        }}>Add New Product</Button>
-        {/* Snackbar component for displaying messages */}
-        <Snackbar
-          anchorOrigin={{ vertical: "top", horizontal: "center" }}
-          open={snackbarState.open}
-          autoHideDuration={2000} // Adjust the duration as needed
-          onClose={handleSnackbarClose}
-        >
-          <MuiAlert
-            elevation={6}
-            variant="filled"
-            severity={
-              snackbarState.message.includes("Error") ? "error" : "success"
-            }
+            Add New Product
+          </Button>
+          <Snackbar
+            anchorOrigin={{ vertical: "top", horizontal: "center" }}
+            open={snackbarState.open}
+            autoHideDuration={2000}
+            onClose={handleSnackbarClose}
           >
-            {snackbarState.message}
-          </MuiAlert>
-        </Snackbar>
+            <MuiAlert
+              elevation={6}
+              variant="filled"
+              severity={
+                snackbarState.message.includes("Error") ? "error" : "success"
+              }
+            >
+              {snackbarState.message}
+            </MuiAlert>
+          </Snackbar>
         </div>
-
       </Box>
     </Container>
   );

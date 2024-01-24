@@ -20,11 +20,6 @@ const Navbar = ({ filterItem, btnList }) => {
           color: cyan[900],
           border: "none",
           fontWeight: "bolder",
-          // "&:hover": {
-          //   bgcolor: cyan[900],
-          //   color: cyan[200],
-          //   border: "none",
-          // },
         }}
       >
         Categories are following:{""}
