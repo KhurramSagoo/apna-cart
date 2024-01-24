@@ -4,6 +4,11 @@ import { useNavigate, useParams, useLocation } from "react-router-dom";
 import { Box, Container, Grid, Paper, Typography, styled } from "@mui/material";
 import Btn from "../utils/Btn";
 
+import Breadcrumbs from "@mui/material/Breadcrumbs";
+import Link from "@mui/material/Link";
+import Stack from "@mui/material/Stack";
+import NavigateNextIcon from "@mui/icons-material/NavigateNext";
+
 const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#fff",
   ...theme.typography.body2,
@@ -53,8 +58,41 @@ const ProductDetail = () => {
     return <div>Loading...</div>;
   }
 
+  const breadcrumbs = [
+    <Link
+      underline="hover"
+      key="1"
+      color="inherit"
+      // href="/"
+      onClick={() => navigate("/")}
+    >
+      Home
+    </Link>,
+    <Link
+      underline="hover"
+      key="2"
+      color="inherit"
+      // href="/products"
+      onClick={() => navigate("/")}
+    >
+      Prodcuts
+    </Link>,
+    <Typography key="3" color="text.primary">
+      {title}
+    </Typography>,
+  ];
+
   return (
     <Container>
+      <br />
+      <Stack spacing={2}>
+        <Breadcrumbs
+          separator={<NavigateNextIcon fontSize="small" />}
+          aria-label="breadcrumb"
+        >
+          {breadcrumbs}
+        </Breadcrumbs>
+      </Stack>
       <Grid
         container
         style={{
