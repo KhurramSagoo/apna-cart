@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import ProductCard from "./ProductCard";
 import "./style.css";
 import { Button, Container, Stack, Typography, colors } from "@mui/material";
-import { cyan } from "@mui/material/colors";
+import { cyan, teal } from "@mui/material/colors";
 import Navbar from "./Navbar";
 import NavBarMain from "../../NavBarMain";
 import axios from "axios";
@@ -51,6 +51,7 @@ const ApnaCartHome = () => {
         spacing={2}
         alignItems="center"
         justifyContent="center"
+        // bgcolor={teal.}
       >
         <Navbar filterItem={filterItem} btnList={btnList} />
       </Stack>

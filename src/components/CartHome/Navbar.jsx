@@ -1,54 +1,64 @@
 import React from "react";
 import CloseIcon from "@mui/icons-material/Close";
-import { Button, Typography } from "@mui/material";
-import { cyan } from "@mui/material/colors";
+import { Button, Container, Grid, Typography } from "@mui/material";
+import { blueGrey, cyan } from "@mui/material/colors";
 import { Reviews } from "@mui/icons-material";
 
 const Navbar = ({ filterItem, btnList }) => {
   return (
-    <div
-      style={{
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "center",
-        flexWrap: "wrap",
-      }}
-    >
-      <Typography
-        sx={{
-          bgcolor: cyan[100],
-          color: cyan[900],
-          border: "none",
-          fontWeight: "bolder",
+    <Container>
+      <Grid xs={12} key={btnList.id}>
+        <Typography
+          sx={{
+            // bgcolor: cyan[100],
+            // color: cyan[900],
+            color: "white",
+            border: "none",
+            fontWeight: "bolder",
+            fontfamily: "Montserrat",
+            letterSpacing: "2",
+          }}
+          variant="h5"
+          textAlign="center"
+        >
+          Choose Category:{""}
+        </Typography>
+      </Grid>
+      <div
+        key={filterItem.id}
+        style={{
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          flexWrap: "wrap",
         }}
       >
-        Categories are following:{""}
-      </Typography>
-
-      {btnList.map((curElem) => {
-        return (
-          <>
-            <Button
-              className="nav-btn"
-              variant="outlined"
-              onClick={() => filterItem(curElem)}
-              sx={{
-                bgcolor: cyan[100],
-                color: cyan[900],
-                border: "none",
-                "&:hover": {
-                  bgcolor: cyan[900],
-                  color: cyan[200],
+        {btnList.map((curElem) => {
+          return (
+            <>
+              <Button
+                className="nav-btn"
+                variant="outlined"
+                onClick={() => filterItem(curElem)}
+                sx={{
+                  bgcolor: blueGrey[600],
+                  color: "white",
                   border: "none",
-                },
-              }}
-            >
-              {curElem}
-            </Button>
-          </>
-        );
-      })}
-    </div>
+                  margin: "5px 10px",
+                  "&:hover": {
+                    bgcolor: blueGrey[900],
+                    // color: cyan[200],
+                    border: "none",
+                  },
+                }}
+              >
+                {curElem}
+              </Button>
+            </>
+          );
+        })}
+      </div>
+    </Container>
   );
 };
 

@@ -1,10 +1,30 @@
-import '@fontsource/roboto/300.css';
-import '@fontsource/roboto/400.css';
-import '@fontsource/roboto/500.css';
-import '@fontsource/roboto/700.css';
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&display=swap");
+* {
+  font-family: "Montserrat", sans-serif;
+}
 
-.product-div:hover {
-    transform: scale(1.02);
-    animation: transform 0.5s ease-in-out;
-  }
-  
+.css-6hp17o-MuiList-root-MuiMenu-list {
+  /* padding-top: 0; */
+  /* padding-bottom: 0; */
+  background-color: #455a64;
+}
+
+.MuiTextField-root {
+  color: white; /* Set text color to white */
+}
+
+.MuiTextField-root .MuiInputBase-input::placeholder {
+  color: white; /* Set placeholder color to white */
+}
+
+.MuiTextField-root .MuiInputLabel-root {
+  color: white; /* Set label color to white */
+}
+
+.MuiTextField-root .MuiInput-underline:before {
+  border-bottom-color: white; /* Set underline color to white */
+}
+
+.MuiTextField-root .MuiInput-underline:hover:not(.Mui-disabled):before {
+  border-bottom-color: white; /* Set underline color to white on hover */
+}

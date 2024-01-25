@@ -15,6 +15,8 @@ import Snackbar from "@mui/material/Snackbar";
 import MuiAlert from "@mui/material/Alert";
 import FormControl, { useFormControl } from "@mui/material/FormControl";
 import FormHelperText from "@mui/material/FormHelperText";
+import { blueGrey } from "@mui/material/colors";
+import Btn from "../utils/Btn";
 
 function MyFormHelperText() {
   const { focused } = useFormControl() || {};
@@ -103,6 +105,7 @@ const AddProduct = () => {
         component="form"
         sx={{
           "& > :not(style)": { m: 1, width: "25ch" },
+          color: "white",
         }}
         noValidate
         autoComplete="off"
@@ -147,6 +150,14 @@ const AddProduct = () => {
               // value={newProductData.price}
               // onChange={handleInputChange}
               size="small"
+              // style={{
+              //   color: "white",
+              // }}
+              InputProps={{
+                style: {
+                  color: "white",
+                },
+              }}
 
               // size=""
             />
@@ -226,15 +237,24 @@ const AddProduct = () => {
               size="small"
             />
           </div>
-          <Button
+          {/* <Button
             onClick={addNewProduct}
             variant="contained"
             style={{
-              backgroundColor: "cyan[500]",
+              backgroundColor: blueGrey[600],
+              "&:hover": {
+              
+              },
             }}
           >
             Add New Product
-          </Button>
+          </Button> */}
+          {/* onClick={addNewProduct} */}
+          <Btn
+            bgColor={blueGrey[700]}
+            name="Add Product"
+            onClick={addNewProduct}
+          />
           <Snackbar
             anchorOrigin={{ vertical: "top", horizontal: "center" }}
             open={snackbarState.open}

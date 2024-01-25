@@ -1,7 +1,7 @@
 import { Button } from "@mui/material";
 import React from "react";
 
-const Btn = ({ name, bgColor }) => {
+const Btn = ({ name, bgColor, onClick }) => {
   return (
     <>
       <Button
@@ -9,6 +9,7 @@ const Btn = ({ name, bgColor }) => {
         style={{
           backgroundColor: bgColor,
         }}
+        onClick={onClick}
       >
         {name}
       </Button>

@@ -9,7 +9,7 @@ import Collapse from "@mui/material/Collapse";
 import Avatar from "@mui/material/Avatar";
 import IconButton from "@mui/material/IconButton";
 import Typography from "@mui/material/Typography";
-import { blue, cyan, red, teal } from "@mui/material/colors";
+import { blue, blueGrey, cyan, red, teal } from "@mui/material/colors";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import ShareIcon from "@mui/icons-material/Share";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
@@ -81,11 +81,16 @@ export default function ProductCard({ product }) {
     <>
       <Card
         className="product-div"
-        sx={{ maxWidth: 260, bgcolor: teal[100] }}
+        sx={{ maxWidth: 200, bgcolor: blueGrey[700], minHeight: "450px" }}
         style={{
+          // minHeight: "400px",
           padding: "10px",
-          margin: "10px",
+          margin: "8px",
           overflow: "hidden",
+          transition: "transform 0.3s ease-in-out",
+          "&:hover": {
+            transform: "scale(1.02)",
+          },
         }}
         onClick={() => navigate(`/${category}/${id}`)}
       >
@@ -93,7 +98,7 @@ export default function ProductCard({ product }) {
           avatar={
             <Avatar
               sx={{
-                bgcolor: cyan[500],
+                bgcolor: blueGrey[300],
               }}
               aria-label="recipe"
             >
@@ -118,6 +123,7 @@ export default function ProductCard({ product }) {
             width: "100%",
             maxHeight: "200px",
             objectFit: "contain",
+            borderRadius: "5px",
           }}
           image={image}
           alt="Paella dish"
@@ -126,14 +132,15 @@ export default function ProductCard({ product }) {
           <Typography
             style={{
               fontWeight: "500",
+              color: "white",
             }}
           >
-            {title}
+            {title.slice(0, 38)}
           </Typography>
-          <Typography variant="body2" color="text.secondary">
+          <Typography variant="body2" color="white">
             {/* {description.slice(0, 220)} */}
           </Typography>
-          <Typography variant="body2" color="text.secondary">
+          <Typography variant="body2" color="white">
             <strong>Price: {""}</strong>
             {price}
             {""} $
@@ -148,27 +155,36 @@ export default function ProductCard({ product }) {
           }}
         >
           <IconButton aria-label="add to favorites">
-            <FavoriteIcon />
+            <FavoriteIcon
+              style={{
+                color: "white",
+              }}
+            />
           </IconButton>
           <IconButton aria-label="share">
-            <ShareIcon />
+            <ShareIcon
+              style={{
+                color: "white",
+              }}
+            />
           </IconButton>
-          <Button variant="outline" onClick={handleOpen} style={{}}>
+          {/* <Button variant="outline" onClick={handleOpen}>
             <Typography
               style={{
                 display: "flex",
                 alignItems: "center",
                 justifyContent: "center",
+                color: "white",
               }}
             >
               More info
               <InfoIcon
                 style={{
-                  color: "gray",
+                  color: "white",
                 }}
               />{" "}
             </Typography>
-          </Button>
+          </Button> */}
 
           {/* <Modal
             open={open}

@@ -3,11 +3,13 @@ import axios from "axios";
 import { useNavigate, useParams, useLocation } from "react-router-dom";
 import { Box, Container, Grid, Paper, Typography, styled } from "@mui/material";
 import Btn from "../utils/Btn";
+import StarRating from "../utils/StarRating";
 
 import Breadcrumbs from "@mui/material/Breadcrumbs";
 import Link from "@mui/material/Link";
 import Stack from "@mui/material/Stack";
 import NavigateNextIcon from "@mui/icons-material/NavigateNext";
+import { blueGrey } from "@mui/material/colors";
 
 const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#fff",
@@ -59,25 +61,13 @@ const ProductDetail = () => {
   }
 
   const breadcrumbs = [
-    <Link
-      underline="hover"
-      key="1"
-      color="inherit"
-      // href="/"
-      onClick={() => navigate("/")}
-    >
+    <Link underline="hover" key="1" color="white" onClick={() => navigate("/")}>
       Home
     </Link>,
-    <Link
-      underline="hover"
-      key="2"
-      color="inherit"
-      // href="/products"
-      onClick={() => navigate("/")}
-    >
+    <Link underline="hover" key="2" color="white" onClick={() => navigate("/")}>
       Prodcuts
     </Link>,
-    <Typography key="3" color="text.primary">
+    <Typography key="3" color={blueGrey[50]}>
       {title}
     </Typography>,
   ];
@@ -111,6 +101,7 @@ const ProductDetail = () => {
             flexDirection: "column",
             flexWrap: "wrap",
             width: "100%",
+            color: "white",
           }}
         >
           <Typography variant="h4">{title}</Typography>
@@ -119,8 +110,8 @@ const ProductDetail = () => {
               src={image}
               alt=""
               style={{
-                width: "250px",
-                height: "250px",
+                width: "100%",
+                height: "400px",
                 objectFit: "contain",
               }}
             />
@@ -142,18 +133,27 @@ const ProductDetail = () => {
             width: "100%",
           }}
         >
-          <Item className="">
-            <Typography>{description}</Typography>
-            <Typography>
+          <Item
+            className=""
+            style={{
+              backgroundColor: blueGrey[700],
+            }}
+          >
+            <Typography color="white">{description}</Typography>
+            <Typography color="white">
               <strong>Category:</strong> {category}
             </Typography>
-            <Typography>
+            <Typography color="white">
               <strong>Price:</strong> ${price}
             </Typography>
-            <Typography>
+            <Typography color="white">
+              <strong>Rating:</strong>{" "}
+              <StarRating rate={rating.rate} bgColor="#f57224" />
+            </Typography>
+            <Typography color="white">
               <strong>Rating:</strong> {rating.rate}
             </Typography>
-            <Typography>
+            <Typography color="white">
               <strong>Vote:</strong> {rating.count}
             </Typography>
             <div

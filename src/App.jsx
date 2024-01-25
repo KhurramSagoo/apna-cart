@@ -1,7 +1,7 @@
 import React from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import { Container, Box } from "@mui/material";
-import { cyan } from "@mui/material/colors";
+import { blueGrey, cyan, grey, orange, red, teal } from "@mui/material/colors";
 import NavBarMain from "./NavBarMain";
 import ApnaCartHome from "./components/CartHome/ApnaCartHome";
 import Cart from "./components/pages/Cart";
@@ -13,10 +13,10 @@ import Footer from "./components/CartHome/Footer";
 const App = () => {
   return (
     <Router>
-      <Container maxWidth="xl" style={{ backgroundColor: cyan[100] }}>
+      <Container maxWidth="xl" style={{ backgroundColor: blueGrey[900] }}>
         <Box
           sx={{
-            bgcolor: cyan[100],
+            // bgcolor: teal[100],
             border: "none",
             width: "100%",
             paddingTop: "20px",

@@ -12,8 +12,9 @@ import Button from "@mui/material/Button";
 import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
 import AdbIcon from "@mui/icons-material/Adb";
-import { teal } from "@mui/material/colors";
+import { blueGrey, teal } from "@mui/material/colors";
 import { useNavigate } from "react-router-dom";
+import StoreIcon from "@mui/icons-material/Store";
 
 const pages = ["Home", "Cart", "About", "Add Product"];
 const settings = ["Profile", "Account", "Dashboard", "Logout"];
@@ -42,32 +43,25 @@ function NavBarMain() {
     const selectedSetting = settings[index];
     // console.log(selectedSetting);
   };
-  // const getWork = (index) => {
-  //   console.log(index);
-  //   console.log(index.setting);
-  //   if (index === 0) {
-  //     return navigate("/");
-  //   } else if (index === 1) {
-  //     return navigate("/cart");
-  //   } else if (index === 2) {
-  //     return navigate("/about");
-  //   } else if (index === 3) {
-  //     return navigate("/");
-  //   }
-  // };
 
   return (
     <>
       <AppBar
         position="static"
         style={{
-          backgroundColor: teal[500],
+          backgroundColor: blueGrey[700],
           //   width: "100%",
         }}
       >
         <Container maxWidth="lg">
           <Toolbar disableGutters>
-            <AdbIcon sx={{ display: { xs: "none", md: "flex" }, mr: 1 }} />
+            <StoreIcon
+              sx={{
+                display: { xs: "none", md: "flex" },
+                mr: 1,
+                fontSize: "2rem",
+              }}
+            />
             <Typography
               variant="h6"
               noWrap
@@ -76,18 +70,28 @@ function NavBarMain() {
               sx={{
                 mr: 2,
                 display: { xs: "none", md: "flex" },
-                fontFamily: "monospace",
+                // fontFamily: "monospace",
+                fontFamily: "Montserrat",
                 fontWeight: 700,
                 letterSpacing: ".3rem",
                 color: "inherit",
                 textDecoration: "none",
+                fontSize: "2rem",
+                marginRight: "auto",
               }}
               onClick={() => navigate("/")}
             >
-              LOGO
+              APNA CART
             </Typography>
 
-            <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
+            <Box
+              sx={{
+                flexGrow: 1,
+                display: { xs: "flex", md: "none" },
+                margin: "0",
+                padding: "0",
+              }}
+            >
               <IconButton
                 size="large"
                 aria-label="account of current user"
@@ -113,7 +117,10 @@ function NavBarMain() {
                 open={Boolean(anchorElNav)}
                 onClose={handleCloseNavMenu}
                 sx={{
-                  display: { xs: "block", md: "none" },
+                  display: {
+                    xs: "block",
+                    md: "none",
+                  },
                 }}
               >
                 {/* {pages.map((page) => (
@@ -122,52 +129,69 @@ function NavBarMain() {
                   </MenuItem>
                 ))} */}
                 <MenuItem
-                  // style={{
-                  //   display: "flex",
-                  //   flexDirection: "column",
-                  //   alignItems: "center",
-                  //   justifyContent: "center",
-                  // }}
+                  sx={{
+                    bgcolor: blueGrey[700],
+                    color: "white",
+                    "&:hover": {
+                      bgcolor: blueGrey[900],
+                      border: "none",
+                    },
+                  }}
                   onClick={() => navigate("/")}
                 >
-                  <Typography textAlign="center">Home</Typography>
+                  <Typography textAlign="center" style={{}}>
+                    Home
+                  </Typography>
                 </MenuItem>
                 <MenuItem
-                  // style={{
-                  //   display: "flex",
-                  //   flexDirection: "column",
-                  //   alignItems: "center",
-                  //   justifyContent: "center",
-                  // }}
+                  sx={{
+                    bgcolor: blueGrey[700],
+                    color: "white",
+                    "&:hover": {
+                      bgcolor: blueGrey[900],
+                      border: "none",
+                    },
+                  }}
                   onClick={() => navigate("/cart")}
                 >
                   <Typography textAlign="center">Cart</Typography>
                 </MenuItem>
                 <MenuItem
-                  // style={{
-                  //   display: "flex",
-                  //   flexDirection: "column",
-                  //   alignItems: "center",
-                  //   justifyContent: "center",
-                  // }}
+                  sx={{
+                    bgcolor: blueGrey[700],
+                    color: "white",
+                    "&:hover": {
+                      bgcolor: blueGrey[900],
+                      border: "none",
+                    },
+                  }}
                   onClick={() => navigate("/about")}
                 >
                   <Typography textAlign="center">About</Typography>
                 </MenuItem>
                 <MenuItem
-                  // style={{
-                  //   display: "flex",
-                  //   flexDirection: "column",
-                  //   alignItems: "center",
-                  //   justifyContent: "center",
-                  // }}
+                  sx={{
+                    bgcolor: blueGrey[700],
+                    color: "white",
+                    "&:hover": {
+                      bgcolor: blueGrey[900],
+                      border: "none",
+                    },
+                  }}
                   onClick={() => navigate("/add_product")}
                 >
                   <Typography textAlign="center">Add Product</Typography>
                 </MenuItem>
               </Menu>
             </Box>
-            <AdbIcon sx={{ display: { xs: "flex", md: "none" }, mr: 1 }} />
+            {/* <StoreIcon /> */}
+            <StoreIcon
+              sx={{
+                display: { xs: "flex", md: "none" },
+                mr: 1,
+                fontSize: "2rem",
+              }}
+            />
             <Typography
               variant="h5"
               noWrap
@@ -178,17 +202,25 @@ function NavBarMain() {
                 mr: 2,
                 display: { xs: "flex", md: "none" },
                 flexGrow: 1,
-                fontFamily: "monospace",
+                // fontFamily: "monospace",
                 fontWeight: 700,
                 letterSpacing: ".3rem",
                 color: "inherit",
                 textDecoration: "none",
                 cursor: "pointer",
+                fontSize: "2rem",
+                marginRight: "auto",
               }}
             >
-              LOGO
+              APNA CART
             </Typography>
-            <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
+            <Box
+              sx={{
+                flexGrow: 1,
+                display: { xs: "none", md: "flex" },
+                // marginLeft: "auto",
+              }}
+            >
               {/* {pages.map((page) => (
                 <Button
                   key={page}
@@ -227,8 +259,7 @@ function NavBarMain() {
                 About
               </Button>
             </Box>
-
-            <Box sx={{ flexGrow: 0 }}>
+            {/* <Box sx={{ flexGrow: 0 }}>
               <Tooltip title="Open settings">
                 <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
                   <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
@@ -260,7 +291,7 @@ function NavBarMain() {
                   </MenuItem>
                 ))}
               </Menu>
-            </Box>
+            </Box> */}
           </Toolbar>
         </Container>
       </AppBar>
