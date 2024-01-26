@@ -6,7 +6,7 @@ const cartSlice = createSlice({
   name: "cart",
   initialState: {
     cartItems: [],
-    amount: 0,
+    price: 0,
     total: 0,
     isLoading: true, // Array to store products in the cart
   },
@@ -23,20 +23,20 @@ const cartSlice = createSlice({
     },
     increase: (state, { payload }) => {
       const cartItem = state.cartItems.find((item) => item.id === payload.id);
-      cartItem.amount = cartItem.amount + 1;
+      cartItem.price = cartItem.amount + 1;
     },
     decrease: (state, { payload }) => {
       const cartItem = state.cartItems.find((item) => item.id === payload.id);
-      cartItem.amount = cartItem.amount - 1;
+      cartItem.price = cartItem.amount - 1;
     },
     calculateTotals: (state) => {
-      let amount = 0;
+      let price = 0;
       let total = 0;
       state.cartItems.forEach((item) => {
-        amount += item.amount;
-        total += item.amount * item.price;
+        price += item.price;
+        total += item.price * item.price;
       });
-      state.amount = amount;
+      state.price = price;
       state.total = total;
     },
   },

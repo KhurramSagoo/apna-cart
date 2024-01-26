@@ -72,6 +72,7 @@ export default function ProductCard({ product }) {
           bgcolor: blueGrey[700],
           minHeight: "300px",
           paddingTop: "10px",
+          cursor: "pointer",
         }}
         style={{
           margin: "5px",

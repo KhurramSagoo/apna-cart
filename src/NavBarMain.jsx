@@ -15,6 +15,7 @@ import AdbIcon from "@mui/icons-material/Adb";
 import { blueGrey, teal } from "@mui/material/colors";
 import { useNavigate } from "react-router-dom";
 import StoreIcon from "@mui/icons-material/Store";
+import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 
 const pages = ["Home", "Cart", "About", "Add Product"];
 const settings = ["Profile", "Account", "Dashboard", "Logout"];
@@ -216,7 +217,7 @@ function NavBarMain() {
             </Typography>
             <Box
               sx={{
-                flexGrow: 1,
+                // flexGrow: 1,
                 display: { xs: "none", md: "flex" },
                 // marginLeft: "auto",
               }}
@@ -259,6 +260,7 @@ function NavBarMain() {
                 About
               </Button>
             </Box>
+
             {/* <Box sx={{ flexGrow: 0 }}>
               <Tooltip title="Open settings">
                 <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
@@ -292,6 +294,14 @@ function NavBarMain() {
                 ))}
               </Menu>
             </Box> */}
+            <ShoppingCartIcon
+              style={{
+                cursor: "pointer",
+              }}
+              onClick={() => {
+                navigate("/cart");
+              }}
+            />
           </Toolbar>
         </Container>
       </AppBar>

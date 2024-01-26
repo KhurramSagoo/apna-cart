@@ -1,5 +1,5 @@
 import { Container, Typography, Button, List, ListItem } from "@mui/material";
-import { cyan } from "@mui/material/colors";
+import { blueGrey } from "@mui/material/colors";
 import { useSelector, useDispatch } from "react-redux";
 import {
   clearCart,
@@ -8,11 +8,12 @@ import {
   decrease,
   calculateTotals,
 } from "../../features/CartSlice";
+import SingleCartItem from "./SingleCartItem";
 
 const Cart = () => {
   const dispatch = useDispatch();
   const cartItems = useSelector((state) => state.cart.cartItems);
-  const amount = useSelector((state) => state.cart.amount);
+  const price = useSelector((state) => state.cart.price);
   const total = useSelector((state) => state.cart.total);
 
   const handleClearCart = () => {
@@ -39,7 +40,10 @@ const Cart = () => {
   };
 
   return (
-    <Container maxWidth="xl" style={{ backgroundColor: cyan[100] }}>
+    <Container
+      maxWidth="xl"
+      style={{ backgroundColor: blueGrey[900], color: "white" }}
+    >
       <Typography variant="h4" align="center" style={{ marginTop: "20px" }}>
         Cart Page
       </Typography>
@@ -55,9 +59,39 @@ const Cart = () => {
               <Typography>{item.title}</Typography>
               <Typography>${item.price}</Typography>
               <Typography>Quantity: {item.amount}</Typography>
-              <Button onClick={() => handleIncrease(item)}>+</Button>
-              <Button onClick={() => handleDecrease(item)}>-</Button>
-              <Button onClick={() => handleRemoveItem(item.id)}>Remove</Button>
+              <Button
+                onClick={() => handleIncrease(item)}
+                style={{
+                  // width: "15px",
+                  backgroundColor: blueGrey[500],
+                  color: "white",
+                  margin: "10px",
+                }}
+              >
+                +
+              </Button>
+              <Button
+                onClick={() => handleDecrease(item)}
+                style={{
+                  // width: "15px",
+                  backgroundColor: blueGrey[500],
+                  color: "white",
+                  margin: "10px",
+                }}
+              >
+                -
+              </Button>
+              <Button
+                onClick={() => handleRemoveItem(item.id)}
+                style={{
+                  // width: "15px",
+                  backgroundColor: blueGrey[500],
+                  color: "white",
+                  margin: "10px",
+                }}
+              >
+                Remove
+              </Button>
             </ListItem>
           ))}
         </List>
@@ -65,7 +99,7 @@ const Cart = () => {
 
       {cartItems.length > 0 && (
         <div>
-          <Typography variant="h6">Total Items: {amount}</Typography>
+          <Typography variant="h6">Total Items: {price}</Typography>
           <Typography variant="h6">Total Price: ${total}</Typography>
           <Button
             variant="contained"
@@ -76,6 +110,13 @@ const Cart = () => {
           </Button>
         </div>
       )}
+
+      <div>
+        {cartItems.map((item) => {
+          console.log(item);
+          return <SingleCartItem key={item.id} item={item} />;
+        })}
+      </div>
     </Container>
   );
 };
