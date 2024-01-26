@@ -13,6 +13,7 @@ import SingleCartItem from "./SingleCartItem";
 const Cart = () => {
   const dispatch = useDispatch();
   const cartItems = useSelector((state) => state.cart.cartItems);
+  console.log(cartItems);
   const price = useSelector((state) => state.cart.price);
   const total = useSelector((state) => state.cart.total);
 
