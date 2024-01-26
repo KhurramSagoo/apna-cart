@@ -37,19 +37,6 @@ const ExpandMore = styled((props) => {
 
 export default function ProductCard({ product }) {
   const navigate = useNavigate();
-  // console.log(product);
-  //   id: 1,
-  //   title: 'Fjallraven - Foldsack No. 1 Backpack, Fits 15 Laptops',
-  //   price: 109.95,
-  //   description:
-  //     'Your perfect pack for everyday use and walks in the forest. Stash your laptop (up to 15 inches) in the padded sleeve, your everyday',
-  //   category: 'men\'s clothing',
-  //   image: 'https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_.jpg',
-  //   rating: { rate: 3.9, count: 120 }
-  // },
-  // const { id, title, image, category, description, price, rating } = [
-  //   ...product,
-  // ];
   const { id, title, price, description, category, image, rating } = product;
   const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(true);
@@ -64,13 +51,10 @@ export default function ProductCard({ product }) {
     left: "50%",
     transform: "translate(-50%, -50%)",
     width: "100%",
-    maxWidth: 250,
     bgcolor: "background.paper",
-    // border: "1.5px solid #000",
     boxShadow: 24,
     borderRadius: "5px",
     p: 4,
-    bgcolor: teal[50],
   };
 
   const handleExpandClick = () => {
@@ -81,24 +65,30 @@ export default function ProductCard({ product }) {
     <>
       <Card
         className="product-div"
-        sx={{ maxWidth: 200, bgcolor: blueGrey[700], minHeight: "450px" }}
+        sx={{ maxWidth: 250, bgcolor: blueGrey[700], minHeight: "370px" }}
         style={{
-          // minHeight: "400px",
-          padding: "10px",
-          margin: "8px",
+          margin: "5px",
           overflow: "hidden",
           transition: "transform 0.3s ease-in-out",
           "&:hover": {
             transform: "scale(1.02)",
+            backgroundColor: blueGrey[800],
           },
         }}
         onClick={() => navigate(`/${category}/${id}`)}
       >
         <CardHeader
+          sx={{
+            padding: "10px",
+            textAlign: "center",
+          }}
           avatar={
             <Avatar
               sx={{
                 bgcolor: blueGrey[300],
+                fontSize: "16px",
+                padding: "0px",
+                margin: "0px",
               }}
               aria-label="recipe"
             >
@@ -114,6 +104,8 @@ export default function ProductCard({ product }) {
           title={category.toUpperCase()}
           style={{
             fontWeight: "bold",
+            color: "white",
+            textAlign: "center",
           }}
           // subheader={recipe.label}
         />
@@ -128,14 +120,20 @@ export default function ProductCard({ product }) {
           image={image}
           alt="Paella dish"
         />
-        <CardContent>
+        <CardContent
+          style={{
+            padding: "10px",
+            textAlign: "center",
+          }}
+        >
           <Typography
             style={{
               fontWeight: "500",
               color: "white",
+              fontSize: "14px",
             }}
           >
-            {title.slice(0, 38)}
+            {title.slice(0, 50)}
           </Typography>
           <Typography variant="body2" color="white">
             {/* {description.slice(0, 220)} */}
@@ -144,98 +142,28 @@ export default function ProductCard({ product }) {
             <strong>Price: {""}</strong>
             {price}
             {""} $
+            <IconButton aria-label="add to favorites">
+              <FavoriteIcon
+                className="card--icon"
+                style={
+                  {
+                    // color: "white",
+                  }
+                }
+              />
+            </IconButton>
+            <IconButton aria-label="share">
+              <ShareIcon
+                className="card--icon"
+                style={
+                  {
+                    // color: "white",
+                  }
+                }
+              />
+            </IconButton>
           </Typography>
         </CardContent>
-
-        <CardActions
-          style={{
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "space-evenly",
-          }}
-        >
-          <IconButton aria-label="add to favorites">
-            <FavoriteIcon
-              style={{
-                color: "white",
-              }}
-            />
-          </IconButton>
-          <IconButton aria-label="share">
-            <ShareIcon
-              style={{
-                color: "white",
-              }}
-            />
-          </IconButton>
-          {/* <Button variant="outline" onClick={handleOpen}>
-            <Typography
-              style={{
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-                color: "white",
-              }}
-            >
-              More info
-              <InfoIcon
-                style={{
-                  color: "white",
-                }}
-              />{" "}
-            </Typography>
-          </Button> */}
-
-          {/* <Modal
-            open={open}
-            onClose={handleClose}
-            aria-labelledby="modal-modal-title"
-            aria-describedby="modal-modal-description"
-          >
-            <Box sx={style}>
-              <img
-                src={image}
-                alt=""
-                style={{
-                  width: "90%",
-                  height: "auto",
-                  maxHeight: "250px",
-                  objectFit: "contain",
-                }}
-              />
-              {/* <Typography paragraph>Ingredients:</Typography> */}
-          {/* <Typography paragraph key={id}>
-                {product.map((element, id) => (
-                  <ul key={id}>
-                    <li>{element}</li>
-                  </ul>
-                ))}
-              </Typography> */}
-          {/* <Typography> */}
-          {/* {description} */}
-          {/* {description.slice(0, 220)} */}
-          {/* </Typography> */}
-          {/* <Button
-                variant="outlined"
-                onClick={handleClose}
-                style={{
-                  color: "grey",
-                  border: "none",
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "end",
-                  marginLeft: "auto",
-                }}
-              >
-                Close
-                <CloseIcon />
-              </Button> */}
-          {/* </Box> */}
-          {/* </Modal> */}
-        </CardActions>
-        <Collapse in={expanded} timeout="auto" unmountOnExit>
-          <CardContent></CardContent>
-        </Collapse>
       </Card>
     </>
   );

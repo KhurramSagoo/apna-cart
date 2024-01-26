@@ -3,12 +3,28 @@
   font-family: "Montserrat", sans-serif;
 }
 
+body {
+  margin: 0;
+  padding: 0;
+}
+.css-185gdzj-MuiCardHeader-root {
+  padding: 0;
+}
 .css-6hp17o-MuiList-root-MuiMenu-list {
   /* padding-top: 0; */
   /* padding-bottom: 0; */
   background-color: #455a64;
 }
-
+.card--icon {
+  color: white;
+}
+.card--icon:hover {
+  /* color: blue; */
+  background-color: white;
+  border-radius: 25px;
+  padding: 3px;
+  color: #263238;
+}
 .MuiTextField-root {
   color: white; /* Set text color to white */
 }

@@ -136,7 +136,7 @@ const ProductDetail = () => {
           <Item
             className=""
             style={{
-              backgroundColor: blueGrey[700],
+              backgroundColor: blueGrey[900],
             }}
           >
             <Typography color="white">{description}</Typography>
