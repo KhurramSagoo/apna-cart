@@ -1,8 +1,7 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import axios from "axios";
-import { useNavigate, useParams, useLocation } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import {
-  Box,
   Container,
   Grid,
   IconButton,
@@ -20,6 +19,15 @@ import NavigateNextIcon from "@mui/icons-material/NavigateNext";
 import { blueGrey } from "@mui/material/colors";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import ShareIcon from "@mui/icons-material/Share";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  clearCart,
+  removeItem,
+  increase,
+  decrease,
+  calculateTotals,
+  addToCart,
+} from "../../features/CartSlice";
 
 const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#fff",
@@ -30,10 +38,11 @@ const Item = styled(Paper)(({ theme }) => ({
 }));
 
 const ProductDetail = () => {
+  const selector = useSelector((state) => state.cart);
+  const dispatch = useDispatch();
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
   const params = useParams();
-  const location = useLocation();
 
   const { mediaType, id } = params;
   const [productDetail, setProductDetail] = useState({
@@ -194,9 +203,22 @@ const ProductDetail = () => {
                 justifyContent: "space-around",
               }}
             >
-              <Btn name="Buy Now" bgColor="#2abbe8" />
+              <Btn
+                name="Buy Now"
+                bgColor="#2abbe8"
+                handle={() => {
+                  alert("buy");
+                }}
+              />
 
-              <Btn name="Add to Cart" bgColor="#f57224" />
+              <Btn
+                name="Add to Cart"
+                bgColor="#f57224"
+                handle={() => {
+                  dispatch(addToCart(productDetail));
+                  alert("Product added to cart");
+                }}
+              />
             </div>
           </Item>
         </Grid>

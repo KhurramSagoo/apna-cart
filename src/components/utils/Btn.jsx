@@ -1,7 +1,7 @@
 import { Button } from "@mui/material";
-import React from "react";
 
-const Btn = ({ name, bgColor, onClick }) => {
+// eslint-disable-next-line react/prop-types
+const Btn = ({ name, bgColor, handle }) => {
   return (
     <>
       <Button
@@ -9,7 +9,7 @@ const Btn = ({ name, bgColor, onClick }) => {
         style={{
           backgroundColor: bgColor,
         }}
-        onClick={onClick}
+        onClick={handle}
       >
         {name}
       </Button>
