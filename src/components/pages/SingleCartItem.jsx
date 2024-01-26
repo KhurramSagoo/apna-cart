@@ -7,7 +7,8 @@ import { blueGrey } from "@mui/material/colors";
 import { Button } from "@mui/material";
 const SingleCartItem = ({ item }) => {
   const { id, image, title, price, amount } = item;
-  const selector = useSelector((store) => store.cart);
+
+  const numberOfItems = useSelector((store) => store.cart.cartItems.length);
   const dispatch = useDispatch();
   return (
     <article className="cart-item">
@@ -46,13 +47,14 @@ const SingleCartItem = ({ item }) => {
         <button
           className="amount-btn"
           onClick={() => {
-            dispatch(increase({ price }));
+            dispatch(increase({ id }));
           }}
         >
           <KeyboardArrowUpIcon />
           {/* <ChevronUp /> */}
         </button>
-        <p className="amount">{price}</p>
+        <p className="amount">{amount}</p>
+        <p className="amount">{numberOfItems}</p>
         <button
           className="amount-btn"
           onClick={() => {
@@ -60,7 +62,7 @@ const SingleCartItem = ({ item }) => {
               dispatch(removeItem(id));
               return;
             }
-            dispatch(decrease({ price }));
+            dispatch(decrease({ id }));
           }}
         >
           <KeyboardArrowDownIcon />
