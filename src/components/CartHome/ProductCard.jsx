@@ -19,6 +19,7 @@ import InfoIcon from "@mui/icons-material/Info";
 import CloseIcon from "@mui/icons-material/Close";
 import "./style.css";
 import { useNavigate } from "react-router-dom";
+import StarRating from "../utils/StarRating";
 
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
@@ -65,50 +66,20 @@ export default function ProductCard({ product }) {
     <>
       <Card
         className="product-div"
-        sx={{ maxWidth: 250, bgcolor: blueGrey[700], minHeight: "370px" }}
+        sx={{
+          // maxWidth: "250px",
+          width: "250px",
+          bgcolor: blueGrey[700],
+          minHeight: "300px",
+          paddingTop: "10px",
+        }}
         style={{
           margin: "5px",
           overflow: "hidden",
           transition: "transform 0.3s ease-in-out",
-          "&:hover": {
-            transform: "scale(1.02)",
-            backgroundColor: blueGrey[800],
-          },
         }}
         onClick={() => navigate(`/${category}/${id}`)}
       >
-        <CardHeader
-          sx={{
-            padding: "10px",
-            textAlign: "center",
-          }}
-          avatar={
-            <Avatar
-              sx={{
-                bgcolor: blueGrey[300],
-                fontSize: "16px",
-                padding: "0px",
-                margin: "0px",
-              }}
-              aria-label="recipe"
-            >
-              {/* {recipe.category.charAt(0)} */}
-              {id}
-            </Avatar>
-          }
-          action={
-            <IconButton aria-label="settings">
-              <MoreVertIcon />
-            </IconButton>
-          }
-          title={category.toUpperCase()}
-          style={{
-            fontWeight: "bold",
-            color: "white",
-            textAlign: "center",
-          }}
-          // subheader={recipe.label}
-        />
         <CardMedia
           component="img"
           style={{
@@ -142,27 +113,8 @@ export default function ProductCard({ product }) {
             <strong>Price: {""}</strong>
             {price}
             {""} $
-            <IconButton aria-label="add to favorites">
-              <FavoriteIcon
-                className="card--icon"
-                style={
-                  {
-                    // color: "white",
-                  }
-                }
-              />
-            </IconButton>
-            <IconButton aria-label="share">
-              <ShareIcon
-                className="card--icon"
-                style={
-                  {
-                    // color: "white",
-                  }
-                }
-              />
-            </IconButton>
           </Typography>
+          <StarRating rate={rating.rate} bgColor="#f57224" />
         </CardContent>
       </Card>
     </>

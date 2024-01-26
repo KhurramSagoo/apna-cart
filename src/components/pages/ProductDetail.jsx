@@ -1,7 +1,15 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { useNavigate, useParams, useLocation } from "react-router-dom";
-import { Box, Container, Grid, Paper, Typography, styled } from "@mui/material";
+import {
+  Box,
+  Container,
+  Grid,
+  IconButton,
+  Paper,
+  Typography,
+  styled,
+} from "@mui/material";
 import Btn from "../utils/Btn";
 import StarRating from "../utils/StarRating";
 
@@ -10,6 +18,8 @@ import Link from "@mui/material/Link";
 import Stack from "@mui/material/Stack";
 import NavigateNextIcon from "@mui/icons-material/NavigateNext";
 import { blueGrey } from "@mui/material/colors";
+import FavoriteIcon from "@mui/icons-material/Favorite";
+import ShareIcon from "@mui/icons-material/Share";
 
 const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#fff",
@@ -156,6 +166,27 @@ const ProductDetail = () => {
             <Typography color="white">
               <strong>Vote:</strong> {rating.count}
             </Typography>
+            <IconButton aria-label="add to favorites">
+              <FavoriteIcon
+                className="card--icon"
+                style={
+                  {
+                    // color: "white",
+                  }
+                }
+              />
+            </IconButton>
+            <IconButton aria-label="share">
+              <ShareIcon
+                className="card--icon"
+                style={
+                  {
+                    // color: "white",
+                  }
+                }
+              />
+            </IconButton>
+
             <div
               style={{
                 display: "flex",

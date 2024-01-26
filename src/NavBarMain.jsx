@@ -187,7 +187,7 @@ function NavBarMain() {
             {/* <StoreIcon /> */}
             <StoreIcon
               sx={{
-                display: { xs: "flex", md: "none" },
+                display: { xs: "none", md: "none", sm: "flex" },
                 mr: 1,
                 fontSize: "2rem",
               }}

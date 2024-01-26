@@ -1,4 +1,5 @@
 .product-div:hover {
   transform: scale(1.02);
+  box-shadow: inset;
   animation: transform 0.5s ease-in-out;
 }
