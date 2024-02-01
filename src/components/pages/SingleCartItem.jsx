@@ -6,9 +6,10 @@ import Btn from "../utils/Btn";
 import { blueGrey } from "@mui/material/colors";
 import { Button } from "@mui/material";
 const SingleCartItem = ({ item }) => {
+  // console.log(item);
   const { id, image, title, price, amount } = item;
-
-  const numberOfItems = useSelector((store) => store.cart.cartItems.length);
+  // console.log(image);
+  // const numberOfItems = useSelector((store) => store.cart.cartItems.length);
   const dispatch = useDispatch();
   return (
     <article className="cart-item">
@@ -34,27 +35,30 @@ const SingleCartItem = ({ item }) => {
       <div
         style={{
           color: "white",
+          display: "flex",
         }}
       >
-        {/* <Btn
-          handle={() => {
-            dispatch(increase({ id }));
-          }}
-          name="Remove"
-          bgColor={blueGrey[]}
-        /> */}
-
         <button
           className="amount-btn"
           onClick={() => {
             dispatch(increase({ id }));
           }}
         >
-          <KeyboardArrowUpIcon />
+          <KeyboardArrowUpIcon
+            style={{
+              fontSize: "1rem",
+              // padding: "5px 10px",
+            }}
+          />
           {/* <ChevronUp /> */}
         </button>
-        <p className="amount">{amount}</p>
-        <p className="amount">{numberOfItems}</p>
+        <div
+          style={{
+            margin: "0 10px",
+          }}
+        >
+          <p className="amount">{amount}</p>
+        </div>
         <button
           className="amount-btn"
           onClick={() => {
@@ -65,8 +69,11 @@ const SingleCartItem = ({ item }) => {
             dispatch(decrease({ id }));
           }}
         >
-          <KeyboardArrowDownIcon />
-          {/* <ChevronDown /> */}
+          <KeyboardArrowDownIcon
+            style={{
+              fontSize: "1rem",
+            }}
+          />
         </button>
       </div>
     </article>

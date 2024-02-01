@@ -16,11 +16,23 @@ import { blueGrey, teal } from "@mui/material/colors";
 import { useNavigate } from "react-router-dom";
 import StoreIcon from "@mui/icons-material/Store";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
+import { useSelector } from "react-redux";
 
 const pages = ["Home", "Cart", "About", "Add Product"];
 const settings = ["Profile", "Account", "Dashboard", "Logout"];
 
 function NavBarMain() {
+  const cartItems = useSelector((state) => state.cart.cartItems);
+
+  // Calculate the total number of items in the cart
+  const totalItemsInCart = cartItems.reduce(
+    (acc, item) => acc + item.amount,
+    0
+  );
+
+  const amount = useSelector((store) => store.cartItems);
+  // const { image, price, amount } = cartItems;
+  console.log(amount);
   const navigate = useNavigate();
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
@@ -294,6 +306,7 @@ function NavBarMain() {
                 ))}
               </Menu>
             </Box> */}
+
             <ShoppingCartIcon
               style={{
                 cursor: "pointer",
@@ -302,6 +315,7 @@ function NavBarMain() {
                 navigate("/cart");
               }}
             />
+            <Typography>{totalItemsInCart}</Typography>
           </Toolbar>
         </Container>
       </AppBar>

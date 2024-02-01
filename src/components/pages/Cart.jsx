@@ -13,12 +13,25 @@ import SingleCartItem from "./SingleCartItem";
 const Cart = () => {
   const dispatch = useDispatch();
   const cartItems = useSelector((state) => state.cart.cartItems);
-  console.log(cartItems);
-  const price = useSelector((state) => state.cart.price);
-  const total = useSelector((state) => state.cart.total);
+  // const { image, price,amount } = cartItems;
+  const { total } = useSelector((state) => state.cart);
+  // console.log(total);
+  // console.log(cartItems);
+
+  const totalItems = cartItems.reduce((acc, item) => acc + item.amount, 0);
+
+  const totalPrice = cartItems.reduce(
+    (acc, item) => acc + item.amount * item.price,
+    0
+  );
 
   const handleClearCart = () => {
     dispatch(clearCart());
+  };
+  const handleBuy = () => {
+    dispatch(clearCart());
+
+    alert("Thank you for shopping!");
   };
 
   const handleRemoveItem = (itemId) => {
@@ -28,7 +41,6 @@ const Cart = () => {
 
   const handleIncrease = (item) => {
     dispatch(increase({ id: item.id }));
-    dispatch(calculateTotals());
   };
 
   const handleDecrease = (item) => {
@@ -46,7 +58,7 @@ const Cart = () => {
       style={{ backgroundColor: blueGrey[900], color: "white" }}
     >
       <Typography variant="h4" align="center" style={{ marginTop: "20px" }}>
-        Cart Page
+        Your's Cart. Happy Shopping!
       </Typography>
 
       {cartItems.length === 0 ? (
@@ -58,65 +70,64 @@ const Cart = () => {
           {cartItems.map((item) => (
             <ListItem key={item.id}>
               <Typography>{item.title}</Typography>
-              <Typography>${item.price}</Typography>
-              <Typography>Quantity: {item.amount}</Typography>
-              <Button
-                onClick={() => handleIncrease(item)}
-                style={{
-                  // width: "15px",
-                  backgroundColor: blueGrey[500],
-                  color: "white",
-                  margin: "10px",
-                }}
-              >
-                +
-              </Button>
-              <Button
-                onClick={() => handleDecrease(item)}
-                style={{
-                  // width: "15px",
-                  backgroundColor: blueGrey[500],
-                  color: "white",
-                  margin: "10px",
-                }}
-              >
-                -
-              </Button>
-              <Button
-                onClick={() => handleRemoveItem(item.id)}
-                style={{
-                  // width: "15px",
-                  backgroundColor: blueGrey[500],
-                  color: "white",
-                  margin: "10px",
-                }}
-              >
-                Remove
-              </Button>
             </ListItem>
           ))}
         </List>
       )}
 
-      {cartItems.length > 0 && (
-        <div>
-          <Typography variant="h6">Total Items: {price}</Typography>
-          <Typography variant="h6">Total Price: ${total}</Typography>
-          <Button
-            variant="contained"
-            color="secondary"
-            onClick={handleClearCart}
+      <div
+        style={{
+          display: "flex",
+          alignItems: "baseline",
+          justifyContent: "center",
+          flexWrap: "wrap",
+          // margin: "10px",
+          // padding: "5px",
+        }}
+      >
+        {cartItems.map((item) => (
+          <div
+            key={item.id}
+            style={{
+              // display: "flex",
+              // alignItems: "center",
+              // justifyContent: "center",
+              // flexWrap: "wrap",
+              margin: "10px",
+              padding: "5px",
+            }}
           >
-            Clear Cart
-          </Button>
-        </div>
-      )}
+            <SingleCartItem key={item.id} item={item} />
+          </div>
+        ))}
 
-      <div>
-        {cartItems.map((item) => {
-          console.log(item);
-          return <SingleCartItem key={item.id} item={item} />;
-        })}
+        {cartItems.length > 0 && (
+          <div>
+            <Typography variant="h6">Total Items: {totalItems}</Typography>
+            <Typography variant="h6">
+              Total Price: ${Math.ceil(total)}
+            </Typography>
+            <Button
+              variant="contained"
+              onClick={handleBuy}
+              style={{
+                margin: "5px 10px",
+              }}
+            >
+              Buy Now
+            </Button>
+            <Button
+              variant="contained"
+              color="primary"
+              onClick={handleClearCart}
+              style={{
+                margin: "5px 10px",
+              }}
+            >
+              Clear Cart
+            </Button>
+          </div>
+        )}
       </div>
     </Container>
   );

@@ -66,6 +66,7 @@ const ProductDetail = () => {
           `https://fakestoreapi.com/products/${id}`
         );
         setProductDetail(data);
+        // console.log(data);
         setLoading(false);
       } catch (error) {
         console.error("Error fetching product detail:", error);
@@ -216,7 +217,7 @@ const ProductDetail = () => {
                 bgColor="#f57224"
                 handle={() => {
                   dispatch(addToCart(productDetail));
-                  alert("Product added to cart");
+                  // alert("Product added to cart");
                 }}
               />
             </div>
@@ -226,5 +227,4 @@ const ProductDetail = () => {
     </Container>
   );
 };
-
 export default ProductDetail;
