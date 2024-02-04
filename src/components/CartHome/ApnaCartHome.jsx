@@ -6,9 +6,11 @@ import { blueGrey, cyan, teal } from "@mui/material/colors";
 import Navbar from "./Navbar";
 import NavBarMain from "../../NavBarMain";
 import axios from "axios";
+import { ShimmerThumbnail } from "react-shimmer-effects";
 
 const ApnaCartHome = () => {
   const [isLoading, setIsLoading] = useState(false);
+  const [textLoading, setTextLoading] = useState(false);
   const [netError, setNetError] = useState(false);
   const [errNetMessage, setErrNetMessage] = useState("");
   const [success, setSuccess] = useState([]);
@@ -21,6 +23,7 @@ const ApnaCartHome = () => {
 
   const getProducts = async () => {
     setIsLoading(true);
+    setTextLoading(true);
     try {
       const res = await axios.get("https://fakestoreapi.com/products");
 
@@ -34,8 +37,11 @@ const ApnaCartHome = () => {
       setNetError(true);
       setErrNetMessage(error);
     }
-    setNetError(false);
-    setIsLoading(false);
+
+    setTimeout(() => {
+      setNetError(false);
+      setIsLoading(false);
+    }, 1000);
   };
 
   const filterItem = (category) => {
@@ -52,15 +58,21 @@ const ApnaCartHome = () => {
   }, []);
 
   return (
-    <>
+    <Container
+      style={{
+        minHeight: "65vh",
+      }}
+    >
       <br />
 
       <Stack
         direction="row"
         spacing={2}
-        alignItems="center"
-        justifyContent="center"
+        alignItems="flex-start"
+        justifyContent="flex-start"
         // bgcolor={teal.}
+        // style={{
+        // }}
       >
         <Navbar filterItem={filterItem} btnList={btnList} />
       </Stack>
@@ -81,10 +93,11 @@ const ApnaCartHome = () => {
           </h1>
         </div>
       )}
-      {isLoading ? (
+
+      {/* {isLoading && (
         <div
           style={{
-            height: "61dvh",
+            // height: "61dvh",
             textAlign: "center",
             backgroundColor: blueGrey[700],
             color: "white",
@@ -104,22 +117,22 @@ const ApnaCartHome = () => {
             Loading...Please wait
           </h1>
         </div>
-      ) : (
-        <div
-          className=""
-          style={{
-            display: "flex",
-            alignItems: "flex-start",
-            justifyContent: "center",
-            flexWrap: "wrap",
-          }}
-        >
-          {btnData.map((product) => (
-            <ProductCard product={product} key={product.id} />
-          ))}
-        </div>
-      )}
-    </>
+      )} */}
+
+      <div
+        className=""
+        style={{
+          display: "flex",
+          alignItems: "flex-start",
+          justifyContent: "center",
+          flexWrap: "wrap",
+        }}
+      >
+        {btnData.map((product) => (
+          <ProductCard product={product} key={product.id} loading={isLoading} />
+        ))}
+      </div>
+    </Container>
   );
 };
 

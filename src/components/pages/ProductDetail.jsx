@@ -28,6 +28,20 @@ import {
   calculateTotals,
   addToCart,
 } from "../../features/CartSlice";
+import {
+  ShimmerButton,
+  ShimmerTitle,
+  ShimmerText,
+  ShimmerCircularImage,
+  ShimmerThumbnail,
+  ShimmerBadge,
+  ShimmerTableCol,
+  ShimmerTableRow,
+  ShimmerSectionHeader,
+  ShimmerSimpleGallery,
+  ShimmerPostItem,
+  ShimmerSocialPost,
+} from "react-shimmer-effects";
 
 const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#fff",
@@ -67,13 +81,17 @@ const ProductDetail = () => {
         );
         setProductDetail(data);
         // console.log(data);
-        setLoading(false);
+        setLoading(true);
       } catch (error) {
         console.error("Error fetching product detail:", error);
       }
+      setLoading(false);
     };
 
     fetchProductDetail();
+    setTimeout(() => {
+      setLoading(false);
+    }, 1000);
   }, [id, mediaType]);
 
   if (!productDetail) {
@@ -109,120 +127,194 @@ const ProductDetail = () => {
           minHeight: "77vh",
         }}
       >
-        <Grid
-          item
-          xs={12}
-          md={6}
-          sm={6}
-          style={{
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            flexDirection: "column",
-            flexWrap: "wrap",
-            width: "100%",
-            color: "white",
-          }}
-        >
-          <Typography variant="h4">{title}</Typography>
-          <div>
-            <img
-              src={image}
-              alt=""
-              style={{
-                width: "100%",
-                height: "400px",
-                objectFit: "contain",
-              }}
-            />
-          </div>
-        </Grid>
-
-        {/* 2nd grid */}
-        <Grid
-          item
-          xs={12}
-          md={6}
-          sm={6}
-          style={{
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            flexDirection: "column",
-            flexWrap: "wrap",
-            width: "100%",
-          }}
-        >
-          <Item
-            className=""
+        {loading ? (
+          <Grid
+            item
+            xs={12}
+            md={6}
+            sm={6}
             style={{
-              backgroundColor: blueGrey[900],
+              // display: "flex",
+              // alignItems: "center",
+              // justifyContent: "center",
+              // flexDirection: "column",
+              // flexWrap: "wrap",
+              width: "100%",
+              // color: "white",
             }}
           >
-            <Typography color="white">{description}</Typography>
-            <Typography color="white">
-              <strong>Category:</strong> {category}
-            </Typography>
-            <Typography color="white">
-              <strong>Price:</strong> ${price}
-            </Typography>
-            <Typography color="white">
-              <strong>Rating:</strong>{" "}
-              <StarRating rate={rating.rate} bgColor="#f57224" />
-            </Typography>
-            <Typography color="white">
-              <strong>Rating:</strong> {rating.rate}
-            </Typography>
-            <Typography color="white">
-              <strong>Vote:</strong> {rating.count}
-            </Typography>
-            <IconButton aria-label="add to favorites">
-              <FavoriteIcon
-                className="card--icon"
-                style={
-                  {
-                    // color: "white",
-                  }
-                }
-              />
-            </IconButton>
-            <IconButton aria-label="share">
-              <ShareIcon
-                className="card--icon"
-                style={
-                  {
-                    // color: "white",
-                  }
-                }
-              />
-            </IconButton>
-
-            <div
-              style={{
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "space-around",
-              }}
-            >
-              <Btn
-                name="Buy Now"
-                bgColor="#2abbe8"
-                handle={() => {
-                  alert("buy");
-                }}
-              />
-
-              <Btn
-                name="Add to Cart"
-                bgColor="#f57224"
-                handle={() => {
-                  dispatch(addToCart(productDetail));
-                  // alert("Product added to cart");
+            {/* <ShimmerButton size="sm" /> */}
+            {/* <ShimmerButton size="md" /> */}
+            {/* <ShimmerButton size="lg" /> */}
+            {/* <ShimmerBadge width={200} /> */}
+            <ShimmerTitle />
+            {/* <ShimmerTitle line={3} variant="secondary" /> */}
+            {/* <ShimmerCircularImage size={300} /> */}
+            {/* <ShimmerText /> */}
+            <ShimmerThumbnail
+              height={300}
+              width={500}
+              className="m-0"
+              rounded
+            />
+            {/* </Grid> */}
+          </Grid>
+        ) : (
+          <Grid
+            item
+            xs={12}
+            md={6}
+            sm={6}
+            style={{
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              flexDirection: "column",
+              flexWrap: "wrap",
+              width: "100%",
+              color: "white",
+            }}
+          >
+            <Typography variant="h4">{title}</Typography>
+            <div>
+              <img
+                src={image}
+                alt=""
+                style={{
+                  width: "100%",
+                  height: "400px",
+                  objectFit: "contain",
                 }}
               />
             </div>
-          </Item>
-        </Grid>
+          </Grid>
+        )}
+
+        {/* 2nd grid */}
+        {loading ? (
+          <Grid
+            item
+            xs={12}
+            md={6}
+            sm={6}
+            style={{
+              // display: "flex",
+              // alignItems: "center",
+              // justifyContent: "center",
+              // flexDirection: "column",
+              // flexWrap: "wrap",
+              width: "100%",
+            }}
+          >
+            {/* <ShimmerButton size="md" /> */}
+            {/* <ShimmerButton size="lg" /> */}
+            {/* <ShimmerBadge width={200} /> */}
+            {/* <ShimmerTitle /> */}
+            {/* <ShimmerTitle line={3} variant="secondary" /> */}
+            {/* <ShimmerCircularImage size={300} /> */}
+            {/* <ShimmerText /> */}
+            {/* <ShimmerText /> */}
+            {/* <ShimmerText /> */}
+            <ShimmerText line={5} gap={10} />;
+            {/* <ShimmerButton size="sm" /> */}
+            {/* <ShimmerThumbnail
+              height={300}
+              width={500}
+              className="m-0"
+              rounded
+            /> */}
+            {/* </Grid> */}
+          </Grid>
+        ) : (
+          <Grid
+            item
+            xs={12}
+            md={6}
+            sm={6}
+            style={{
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              flexDirection: "column",
+              flexWrap: "wrap",
+              width: "100%",
+            }}
+          >
+            <Item
+              className=""
+              style={{
+                backgroundColor: blueGrey[900],
+              }}
+            >
+              {loading ? (
+                <ShimmerText line={5} gap={10} />
+              ) : (
+                <Typography color="white">{description}</Typography>
+              )}
+              <Typography color="white">
+                <strong>Category:</strong> {category}
+              </Typography>
+              <Typography color="white">
+                <strong>Price:</strong> ${price}
+              </Typography>
+              <Typography color="white">
+                <strong>Rating:</strong>{" "}
+                <StarRating rate={rating.rate} bgColor="#f57224" />
+              </Typography>
+              <Typography color="white">
+                <strong>Rating:</strong> {rating.rate}
+              </Typography>
+              <Typography color="white">
+                <strong>Vote:</strong> {rating.count}
+              </Typography>
+              <IconButton aria-label="add to favorites">
+                <FavoriteIcon
+                  className="card--icon"
+                  style={
+                    {
+                      // color: "white",
+                    }
+                  }
+                />
+              </IconButton>
+              <IconButton aria-label="share">
+                <ShareIcon
+                  className="card--icon"
+                  style={
+                    {
+                      // color: "white",
+                    }
+                  }
+                />
+              </IconButton>
+
+              <div
+                style={{
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "space-around",
+                }}
+              >
+                <Btn
+                  name="Buy Now"
+                  bgColor="#2abbe8"
+                  handle={() => {
+                    alert("buy");
+                  }}
+                />
+
+                <Btn
+                  name="Add to Cart"
+                  bgColor="#f57224"
+                  handle={() => {
+                    dispatch(addToCart(productDetail));
+                    // alert("Product added to cart");
+                  }}
+                />
+              </div>
+            </Item>
+          </Grid>
+        )}
       </Grid>
     </Container>
   );

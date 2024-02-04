@@ -3,3 +3,10 @@
   box-shadow: inset;
   animation: transform 0.5s ease-in-out;
 }
+
+.shimmer-text {
+  width: 200px;
+  text-align: center;
+  margin: 0 30px;
+  text-wrap: wrap;
+}

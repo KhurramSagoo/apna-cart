@@ -10,6 +10,20 @@ import { useEffect, useState } from "react";
 import "./style.css";
 import { useNavigate } from "react-router-dom";
 import StarRating from "../utils/StarRating";
+import {
+  ShimmerThumbnail,
+  ShimmerSimpleGallery,
+  ShimmerPostList,
+  ShimmerPostItem,
+  ShimmerButton,
+  ShimmerTitle,
+  ShimmerText,
+  ShimmerCircularImage,
+  ShimmerBadge,
+  ShimmerTableCol,
+  ShimmerTableRow,
+} from "react-shimmer-effects";
+
 const ExpandMore = styled((props) => {
   const { expand, ...other } = props;
   return <IconButton {...other} />;
@@ -21,7 +35,7 @@ const ExpandMore = styled((props) => {
   }),
 }));
 
-export default function ProductCard({ product }) {
+export default function ProductCard({ product, loading }) {
   const navigate = useNavigate();
   const { id, title, price, description, category, image, rating } = product;
   const [open, setOpen] = useState(false);
@@ -48,60 +62,89 @@ export default function ProductCard({ product }) {
 
   return (
     <>
-      <Card
-        className="product-div"
-        sx={{
-          // maxWidth: "250px",
-          width: "250px",
-          bgcolor: blueGrey[700],
-          minHeight: "300px",
-          paddingTop: "10px",
-          cursor: "pointer",
-        }}
-        style={{
-          margin: "5px",
-          overflow: "hidden",
-          transition: "transform 0.3s ease-in-out",
-        }}
-        onClick={() => navigate(`/${category}/${id}`)}
-      >
-        <CardMedia
-          component="img"
-          style={{
-            width: "100%",
-            maxHeight: "200px",
-            objectFit: "contain",
-            borderRadius: "5px",
-          }}
-          image={image}
-          alt="Paella dish"
-        />
-        <CardContent
-          style={{
-            padding: "10px",
-            textAlign: "center",
-          }}
-        >
-          <Typography
+      {loading ? (
+        <>
+          <div
             style={{
-              fontWeight: "500",
-              color: "white",
-              fontSize: "14px",
+              width: "250px",
+              // minHeight: "30px",
+              // paddingTop: "10px",
+              // height: "250px",
+              margin: "5px 10px",
+              // marginBottom: "10px",
+              // paddingTop: "10px",
             }}
           >
-            {title.slice(0, 50)}
-          </Typography>
-          <Typography variant="body2" color="white">
-            {/* {description.slice(0, 220)} */}
-          </Typography>
-          <Typography variant="body2" color="white">
-            <strong>Price: {""}</strong>
-            {price}
-            {""} $
-          </Typography>
-          <StarRating rate={rating.rate} bgColor="#f57224" />
-        </CardContent>
-      </Card>
+            <ShimmerThumbnail
+              width={150}
+              height={200}
+              className="m-1"
+              rounded
+              center="true"
+            />
+            {/* <ShimmerTitle /> */}
+            {/* <ShimmerText /> */}
+            <ShimmerText line={5} gap={10} className="shimmer-text" />
+            {/* <ShimmerText line={2} gap={10} className="" /> */}
+          </div>
+        </>
+      ) : (
+        <Card
+          className="product-div"
+          sx={{
+            // maxWidth: "250px",
+            width: "250px",
+            bgcolor: blueGrey[700],
+            minHeight: "300px",
+            paddingTop: "10px",
+            cursor: "pointer",
+          }}
+          style={{
+            margin: "5px",
+            overflow: "hidden",
+            transition: "transform 0.3s ease-in-out",
+          }}
+          onClick={() => navigate(`/${category}/${id}`)}
+        >
+          <CardMedia
+            component="img"
+            style={{
+              width: "100%",
+              maxHeight: "200px",
+              objectFit: "contain",
+              borderRadius: "5px",
+            }}
+            image={image}
+            alt="Paella dish"
+          />
+
+          <CardContent
+            style={{
+              padding: "10px",
+              textAlign: "center",
+            }}
+          >
+            <Typography
+              style={{
+                fontWeight: "500",
+                color: "white",
+                fontSize: "14px",
+              }}
+            >
+              {title.slice(0, 50)}
+            </Typography>
+            <Typography variant="body2" color="white">
+              {/* {description.slice(0, 220)} */}
+            </Typography>
+            <Typography variant="body2" color="white">
+              <strong>Price: {""}</strong>
+              {price}
+              {""} $
+            </Typography>
+            <StarRating rate={rating.rate} bgColor="#f57224" />
+          </CardContent>
+        </Card>
+      )}
     </>
   );
 }
