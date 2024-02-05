@@ -13,6 +13,7 @@ const About = () => {
         width: "100%",
         maxWidth: "800px",
         flexDirection: "column",
+        color: "white",
       }}
     >
       <Typography variant="h1" textAlign="center">
