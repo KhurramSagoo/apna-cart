@@ -13,7 +13,10 @@ import Footer from "./components/CartHome/Footer";
 const App = () => {
   return (
     <Router>
-      <Container maxWidth="xl" style={{ backgroundColor: blueGrey[900] }}>
+      <Container
+        maxWidth="xl"
+        style={{ backgroundColor: blueGrey[900], minHeight: "95vh" }}
+      >
         <Box
           sx={{
             // bgcolor: teal[100],

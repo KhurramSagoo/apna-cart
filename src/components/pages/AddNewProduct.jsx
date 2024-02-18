@@ -3,31 +3,40 @@ import axios from "axios";
 import { Container, Grid } from "@mui/material";
 import { useSelector, useDispatch } from "react-redux";
 import AddBtn from "../utils/Btn";
+import { useForm } from "react-hook-form";
+import { addToCart } from "../../features/CartSlice";
 
 const AddNewProduct = () => {
   const dispatch = useDispatch();
-  const [newProductData, setNewProductData] = useState({
-    title: "",
-    price: "",
-    description: "",
-    category: "",
-    image: "",
-    rating: {
-      rate: 0,
-      count: 0,
-    },
-  });
+  const onSubmit = (data) => {
+    console.log(data);
+    // dispatch(
+    //   addToCart({
+    //     id: data.id,
+    //     price: data.price,
+    //     description: data.description,
+    //     category: data.category,
+    //     image: data.url,
+    //     // Add other product data as needed
+    //   })
+    // );
+  };
 
-  const addNewProduct = async (e) => {
-    e.preventDefault();
+  const {
+    register,
+    // handleSubmit,
+    formState: { errors },
+  } = useForm();
+
+  const handleSubmit = async () => {
     try {
       const response = await axios.post(
-        "https://fakestoreapi.com/products",
-        newProductData
+        "https://fakestoreapi.com/products"
+        // newProductData
       );
-      alert("New Product Added Successfully!");
-      dispatch(newProductData);
-
+      // alert("New Product Added Successfully!");
+      // dispatch(newProductData);
+      // alert(response.statusText);
       console.log("New Product Added:", response.data);
     } catch (error) {
       console.error("Error adding new product:", error);
@@ -38,59 +47,71 @@ const AddNewProduct = () => {
     <Container>
       <Grid>
         <Grid item>
-          <form
-            onSubmit={addNewProduct}
-            style={{
-              color: "white",
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-              flexWrap: "wrap",
-              flexDirection: "column",
-              minHeight: "79.5vh",
-              width: "100%",
-            }}
-          >
-            <label>Title:</label>
-            <input
-              type="text"
-              style={{ width: "300px", padding: "10px" }}
-              placeholder="write the title of product..."
-            />
-            <label>Price:</label>
-            <input
-              type="number"
-              name="price"
-              placeholder="write the price of product..."
-              style={{ width: "300px", padding: "10px" }}
-            />
-            <label>Description:</label>
-            <textarea
-              placeholder="write the description of product..."
-              style={{ width: "300px", padding: "10px", resize: "none" }}
-            />
-            <label>Category:</label>
-            <select style={{ width: "300px", padding: "10px", resize: "none" }}>
-              <option>Category</option>
-              <option>Men's Clothing</option>
-              <option>Jewelery</option>
-              <option>Electronics</option>
-              <option>Women's Clothing</option>
-            </select>
-            {/* <input type="text" style={{ width: "300px", padding: "10px" }} /> */}
-
-            <label>Image URL:</label>
-            <input type="text" style={{ width: "300px", padding: "10px" }} />
-            <label>Rating Rate:</label>
-            <input type="number" style={{ width: "300px", padding: "10px" }} />
-            <label>Rating Count:</label>
-            <input type="number" style={{ width: "300px", padding: "10px" }} />
-            <div className="btn-div">
-              <AddBtn
-                name={"Add New Product"}
-                bgColor={"#455a64"}
-                handle={addNewProduct}
+          <form onSubmit={handleSubmit(onSubmit)}>
+            <div
+              style={{
+                color: "white",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                flexWrap: "wrap",
+                flexDirection: "column",
+                minHeight: "79.5vh",
+                width: "100%",
+              }}
+            >
+              <label>Title:</label>
+              <input
+                type="text"
+                style={{ width: "300px", padding: "10px" }}
+                placeholder="write the title of product..."
+                {...register("title")}
               />
+              <p>{errors.root}</p>
+              <label>Price:</label>
+              <input
+                type="number"
+                name="price"
+                placeholder="write the price of product..."
+                style={{ width: "300px", padding: "10px" }}
+                {...register("price")}
+              />
+              <label>Description:</label>
+              <textarea
+                placeholder="write the description of product..."
+                style={{ width: "300px", padding: "10px", resize: "none" }}
+                {...register("description")}
+              />
+              <label>Category:</label>
+              <select
+                style={{ width: "300px", padding: "10px", resize: "none" }}
+                {...register("category")}
+              >
+                <option value="men's clothing">Men's Clothing</option>
+                <option value="jewelery">Jewelery</option>
+                <option value="electronics">Electronics</option>
+                <option value="women's clothing">Women's Clothing</option>
+              </select>
+              {/* <input type="text" style={{ width: "300px", padding: "10px" }} /> */}
+              <label>Image URL:</label>
+              <input
+                type="text"
+                style={{ width: "300px", padding: "10px" }}
+                placeholder="write the image URL of product..."
+                {...register("url")}
+              />
+              <div
+                className="btn-div"
+                style={{
+                  marginTop: "15px",
+                }}
+              >
+                <AddBtn
+                  name={"Add New Product"}
+                  bgColor={"#455a64"}
+                  handle={handleSubmit(onsubmit)}
+                />
+              </div>
             </div>
           </form>
         </Grid>

@@ -1,0 +1,38 @@
+.skeleton-div {
+  position: relative;
+  top: 0;
+}
+
+.skeleton {
+  background-color: rgb(171, 171, 171);
+  position: relative;
+  overflow: hidden;
+  border-radius: 4px;
+  width: 250px;
+  min-height: 320px;
+  margin: 10px;
+}
+
+.skeleton::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: linear-gradient(
+    90deg,
+    hsla(0, 0%, 100%, 0),
+    hsla(0, 0%, 100%, 0.055) 20%,
+    hsla(0, 0%, 100%, 0.089) 60%,
+    hsla(0, 0%, 100%, 0)
+  );
+  animation: shimmer 5s infinite;
+  /* transform: translateX(0%); */
+}
+
+@keyframes shimmer {
+  100% {
+    transform: translateX(100%);
+  }
+}

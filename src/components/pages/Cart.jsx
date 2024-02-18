@@ -55,7 +55,11 @@ const Cart = () => {
   return (
     <Container
       maxWidth="xl"
-      style={{ backgroundColor: blueGrey[900], color: "white" }}
+      style={{
+        backgroundColor: blueGrey[900],
+        color: "white",
+        minHeight: "76vh",
+      }}
     >
       <Typography variant="h4" align="center" style={{ marginTop: "20px" }}>
         Your's Cart. Happy Shopping!

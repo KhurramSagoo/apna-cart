@@ -10,19 +10,10 @@ import { useEffect, useState } from "react";
 import "./style.css";
 import { useNavigate } from "react-router-dom";
 import StarRating from "../utils/StarRating";
-import {
-  ShimmerThumbnail,
-  ShimmerSimpleGallery,
-  ShimmerPostList,
-  ShimmerPostItem,
-  ShimmerButton,
-  ShimmerTitle,
-  ShimmerText,
-  ShimmerCircularImage,
-  ShimmerBadge,
-  ShimmerTableCol,
-  ShimmerTableRow,
-} from "react-shimmer-effects";
+
+import Skeleton from "../skeleton/Skeleton";
+
+import { SkeletonTheme } from "react-loading-skeleton";
 
 const ExpandMore = styled((props) => {
   const { expand, ...other } = props;
@@ -64,29 +55,7 @@ export default function ProductCard({ product, loading }) {
     <>
       {loading ? (
         <>
-          <div
-            style={{
-              width: "250px",
-              // minHeight: "30px",
-              // paddingTop: "10px",
-              // height: "250px",
-              margin: "5px 10px",
-              // marginBottom: "10px",
-              // paddingTop: "10px",
-            }}
-          >
-            <ShimmerThumbnail
-              width={150}
-              height={200}
-              className="m-1"
-              rounded
-              center="true"
-            />
-            {/* <ShimmerTitle /> */}
-            {/* <ShimmerText /> */}
-            <ShimmerText line={5} gap={10} className="shimmer-text" />
-            {/* <ShimmerText line={2} gap={10} className="" /> */}
-          </div>
+          <Skeleton />
         </>
       ) : (
         <Card
@@ -94,8 +63,8 @@ export default function ProductCard({ product, loading }) {
           sx={{
             // maxWidth: "250px",
             width: "250px",
-            bgcolor: blueGrey[700],
             minHeight: "300px",
+            bgcolor: blueGrey[700],
             paddingTop: "10px",
             cursor: "pointer",
           }}

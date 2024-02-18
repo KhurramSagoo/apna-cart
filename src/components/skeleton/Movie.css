@@ -1,0 +1,148 @@
+.movie {
+  width: 250px;
+  height: 350px;
+}
+
+
+.movie__skeleton {
+  aspect-ratio: 2 / 3;
+}
+
+.movie__content {
+  position: absolute;
+  top: 20px;
+  left: 50%;
+  width: 100%;
+  transform: translateX(-50%);
+  opacity: 0;
+  visibility: hidden;
+  transition: 400ms ease;
+  color: white;
+  z-index: 2;
+  padding-left: 8px;
+}
+
+.movie__top {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  margin-bottom: 24px;
+}
+
+.movie__top > h4 {
+  max-width: 95%;
+  font-size: 32px;
+  margin-bottom: 4px;
+  margin-left: 4px;
+  text-transform: capitalize;
+}
+
+.movie__genres {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.movie__genres > p {
+  font-weight: 400;
+  font-size: 12px;
+  padding: 6px 12px;
+  background-color: rgba(68, 68, 68, 0.637);
+  border-radius: 40px;
+  margin-bottom: 4px;
+}
+
+.movie__genres > p:not(:first-child) {
+  margin-left: 2px;
+}
+
+.movie__details {
+  display: flex;
+  flex-direction: column;
+}
+
+.movie__detail {
+  display: flex;
+  justify-content: space-between;
+}
+
+.movie__detail > p {
+  font-weight: 300;
+  font-size: 14px;
+}
+
+.movie__detail > .MuiSvgIcon-root {
+  font-size: 18px;
+}
+
+.movie__language > p {
+  text-transform: uppercase;
+}
+
+.movie__detail:not(:last-child) {
+  margin-bottom: 48px;
+}
+
+.movie__year {
+  position: absolute;
+  color: white;
+  top: -12px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 14px;
+  font-weight: 300;
+  background-color: rgba(68, 68, 68, 0.767);
+  padding: 3px 10px;
+  border-radius: 24px;
+}
+
+@media (max-width: 1280px) {
+  .movie {
+    flex-basis: 28%;
+  }
+
+  .movie__genres > p {
+    font-size: 12px;
+  }
+
+  .movie__genres > p:not(:first-child) {
+    margin-left: 2px;
+  }
+
+  .movie__top > h4 {
+    margin-bottom: 12px;
+  }
+}
+
+@media (max-width: 768px) {
+  .movie {
+    flex-basis: 42%;
+  }
+}
+
+@media (max-width: 600px) {
+  .movie {
+    flex-basis: 100%;
+  }
+
+  .movie__skeleton {
+    width: 100%;
+  }
+
+  .movie__content {
+    top: 32px;
+  }
+
+  .movie__top > h4 {
+    font-size: 36px;
+  }
+}
+
+@media (max-width: 380px) {
+  .movie__content {
+    top: 12px;
+  }
+
+  .movie__top > h4 {
+    font-size: 32px;
+  }
+}

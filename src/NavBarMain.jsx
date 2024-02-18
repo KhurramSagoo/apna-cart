@@ -18,7 +18,7 @@ import StoreIcon from "@mui/icons-material/Store";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import { useSelector } from "react-redux";
 
-const pages = ["Home", "Cart", "About", "Add Product"];
+const pages = ["Home", "Cart", "About", "Add New Product"];
 const settings = ["Profile", "Account", "Dashboard", "Logout"];
 
 function NavBarMain() {
@@ -32,7 +32,7 @@ function NavBarMain() {
 
   const amount = useSelector((store) => store.cartItems);
   // const { image, price, amount } = cartItems;
-  console.log(amount);
+  // console.log(amount);
   const navigate = useNavigate();
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
@@ -193,7 +193,7 @@ function NavBarMain() {
                   }}
                   onClick={() => navigate("/add_product")}
                 >
-                  <Typography textAlign="center">Add Product</Typography>
+                  <Typography textAlign="center">Add New Product</Typography>
                 </MenuItem>
               </Menu>
             </Box>
@@ -262,7 +262,7 @@ function NavBarMain() {
                 onClick={() => navigate("/add_product")}
                 sx={{ my: 2, color: "white", display: "block" }}
               >
-                Add Product
+                Add New Product
               </Button>
               <Button
                 // key={page}
