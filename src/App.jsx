@@ -6,8 +6,8 @@ import NavBarMain from "./NavBarMain";
 import ApnaCartHome from "./components/CartHome/ApnaCartHome";
 import Cart from "./components/pages/Cart";
 import About from "./components/pages/About";
-import AddProduct from "./components/pages/AddProduct";
-import ProductDetail from "./components//pages//ProductDetail";
+import AddNewProduct from "./components/pages/AddNewProduct";
+import ProductDetail from "./components/pages/ProductDetail";
 import Footer from "./components/CartHome/Footer";
 
 const App = () => {
@@ -29,7 +29,7 @@ const App = () => {
             <Route path="/" element={<ApnaCartHome />} />
             <Route path="/cart" element={<Cart />} />
             <Route path="/about" element={<About />} />
-            <Route path="/add_product" element={<AddProduct />} />
+            <Route path="/add_product" element={<AddNewProduct />} />
             <Route path="/:mediaType/:id" element={<ProductDetail />} />
           </Routes>
           <Footer />
