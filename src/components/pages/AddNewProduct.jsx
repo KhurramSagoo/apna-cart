@@ -5,41 +5,30 @@ import { useSelector, useDispatch } from "react-redux";
 import AddBtn from "../utils/Btn";
 import { useForm } from "react-hook-form";
 import { addToCart } from "../../features/CartSlice";
+import { toast } from "react-toastify";
+import { useNavigate } from "react-router-dom";
 
 const AddNewProduct = () => {
-  const dispatch = useDispatch();
-  const onSubmit = (data) => {
-    console.log(data);
-    // dispatch(
-    //   addToCart({
-    //     id: data.id,
-    //     price: data.price,
-    //     description: data.description,
-    //     category: data.category,
-    //     image: data.url,
-    //     // Add other product data as needed
-    //   })
-    // );
-  };
-
+  const navigate = useNavigate();
+  // const dispatch = useDispatch();
   const {
     register,
-    // handleSubmit,
+    handleSubmit,
     formState: { errors },
   } = useForm();
-
-  const handleSubmit = async () => {
+  const onSubmit = async (data) => {
     try {
-      const response = await axios.post(
-        "https://fakestoreapi.com/products"
-        // newProductData
-      );
-      // alert("New Product Added Successfully!");
-      // dispatch(newProductData);
-      // alert(response.statusText);
-      console.log("New Product Added:", response.data);
+      const response = await axios.post("https://fakestoreapi.com/products", {
+        id: 21,
+        ...data,
+      });
+      toast.success("New product added successfully!");
+      setTimeout(() => {
+        toast.info(`Added product title's ${data.title}`);
+      }, 1000);
+      navigate("/");
     } catch (error) {
-      console.error("Error adding new product:", error);
+      toast.error(error.message);
     }
   };
 
@@ -47,7 +36,7 @@ const AddNewProduct = () => {
     <Container>
       <Grid>
         <Grid item>
-          <form onSubmit={handleSubmit(onSubmit)}>
+          <form onSubmit={handleSubmit()}>
             <div
               style={{
                 color: "white",
@@ -65,41 +54,50 @@ const AddNewProduct = () => {
                 type="text"
                 style={{ width: "300px", padding: "10px" }}
                 placeholder="write the title of product..."
-                {...register("title")}
+                {...register("title", { required: true })}
               />
-              <p>{errors.root}</p>
+              {errors.title && <p>Title is required.</p>}
+
+              {/* <p>{errors.root}</p> */}
               <label>Price:</label>
               <input
                 type="number"
                 name="price"
                 placeholder="write the price of product..."
                 style={{ width: "300px", padding: "10px" }}
-                {...register("price")}
+                {...register("price", { required: "true" })}
               />
+              {errors.price && <p>Price is required.</p>}
+
               <label>Description:</label>
               <textarea
                 placeholder="write the description of product..."
                 style={{ width: "300px", padding: "10px", resize: "none" }}
-                {...register("description")}
+                {...register("description", { required: "true" })}
               />
+              {errors.description && <p>Description is required.</p>}
+
               <label>Category:</label>
               <select
                 style={{ width: "300px", padding: "10px", resize: "none" }}
-                {...register("category")}
+                {...register("category", { required: "true" })}
               >
                 <option value="men's clothing">Men's Clothing</option>
                 <option value="jewelery">Jewelery</option>
                 <option value="electronics">Electronics</option>
                 <option value="women's clothing">Women's Clothing</option>
               </select>
-              {/* <input type="text" style={{ width: "300px", padding: "10px" }} /> */}
+              {errors.category && <p>Category is required.</p>}
+
               <label>Image URL:</label>
               <input
                 type="text"
                 style={{ width: "300px", padding: "10px" }}
                 placeholder="write the image URL of product..."
-                {...register("url")}
+                {...register("url", { required: "true" })}
               />
+              {errors.url && <p>Image URL is required.</p>}
+
               <div
                 className="btn-div"
                 style={{
@@ -109,7 +107,7 @@ const AddNewProduct = () => {
                 <AddBtn
                   name={"Add New Product"}
                   bgColor={"#455a64"}
-                  handle={handleSubmit(onsubmit)}
+                  handle={handleSubmit(onSubmit)}
                 />
               </div>
             </div>

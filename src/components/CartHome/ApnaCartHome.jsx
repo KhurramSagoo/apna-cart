@@ -94,31 +94,6 @@ const ApnaCartHome = () => {
         </div>
       )}
 
-      {/* {isLoading && (
-        <div
-          style={{
-            // height: "61dvh",
-            textAlign: "center",
-            backgroundColor: blueGrey[700],
-            color: "white",
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-          }}
-        >
-          <h1
-            style={{
-              // height: "100vh",
-              textAlign: "center",
-              backgroundColor: blueGrey[700],
-              color: "white",
-            }}
-          >
-            Loading...Please wait
-          </h1>
-        </div>
-      )} */}
-
       <div
         className=""
         style={{

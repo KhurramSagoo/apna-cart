@@ -10,10 +10,12 @@ import { useEffect, useState } from "react";
 import "./style.css";
 import { useNavigate } from "react-router-dom";
 import StarRating from "../utils/StarRating";
-
 import Skeleton from "../skeleton/Skeleton";
-
+import { addToCart } from "../../features/CartSlice";
+import { useDispatch } from "react-redux";
 import { SkeletonTheme } from "react-loading-skeleton";
+import Btn from "../utils/Btn";
+import { toast } from "react-toastify";
 
 const ExpandMore = styled((props) => {
   const { expand, ...other } = props;
@@ -27,30 +29,9 @@ const ExpandMore = styled((props) => {
 }));
 
 export default function ProductCard({ product, loading }) {
+  const dispatch = useDispatch();
   const navigate = useNavigate();
   const { id, title, price, description, category, image, rating } = product;
-  const [open, setOpen] = useState(false);
-  const handleOpen = () => setOpen(true);
-  const handleClose = () => setOpen(false);
-
-  const [expanded, setExpanded] = useState(false);
-
-  const style = {
-    position: "absolute",
-    top: "50%",
-    left: "50%",
-    transform: "translate(-50%, -50%)",
-    width: "100%",
-    bgcolor: "background.paper",
-    boxShadow: 24,
-    borderRadius: "5px",
-    p: 4,
-  };
-
-  const handleExpandClick = () => {
-    setExpanded(!expanded);
-  };
-
   return (
     <>
       {loading ? (
@@ -62,8 +43,8 @@ export default function ProductCard({ product, loading }) {
           className="product-div"
           sx={{
             // maxWidth: "250px",
-            width: "250px",
-            minHeight: "300px",
+            width: "275px",
+            minHeight: "350px",
             bgcolor: blueGrey[700],
             paddingTop: "10px",
             cursor: "pointer",
@@ -72,8 +53,11 @@ export default function ProductCard({ product, loading }) {
             margin: "5px",
             overflow: "hidden",
             transition: "transform 0.3s ease-in-out",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "end",
+            flexDirection: "column",
           }}
-          onClick={() => navigate(`/${category}/${id}`)}
         >
           <CardMedia
             component="img"
@@ -84,7 +68,7 @@ export default function ProductCard({ product, loading }) {
               borderRadius: "5px",
             }}
             image={image}
-            alt="Paella dish"
+            alt={title}
           />
 
           <CardContent
@@ -111,6 +95,12 @@ export default function ProductCard({ product, loading }) {
               {""} $
             </Typography>
             <StarRating rate={rating.rate} bgColor="#f57224" />
+
+            <Btn
+              name="Detail"
+              bgColor="#8aa2ad"
+              handle={() => navigate(`/${category}/${id}`)}
+            />
           </CardContent>
         </Card>
       )}

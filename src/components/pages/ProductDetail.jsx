@@ -11,7 +11,6 @@ import {
 } from "@mui/material";
 import Btn from "../utils/Btn";
 import StarRating from "../utils/StarRating";
-
 import Breadcrumbs from "@mui/material/Breadcrumbs";
 import Link from "@mui/material/Link";
 import Stack from "@mui/material/Stack";
@@ -20,31 +19,11 @@ import { blueGrey } from "@mui/material/colors";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import ShareIcon from "@mui/icons-material/Share";
 import { useDispatch, useSelector } from "react-redux";
+import { toast } from "react-toastify";
+// import Skeleton from "../skeleton/Skeleton";
 
-import Skeleton from "../skeleton/Skeleton";
-
-import {
-  clearCart,
-  removeItem,
-  increase,
-  decrease,
-  calculateTotals,
-  addToCart,
-} from "../../features/CartSlice";
-import {
-  ShimmerButton,
-  ShimmerTitle,
-  ShimmerText,
-  ShimmerCircularImage,
-  ShimmerThumbnail,
-  ShimmerBadge,
-  ShimmerTableCol,
-  ShimmerTableRow,
-  ShimmerSectionHeader,
-  ShimmerSimpleGallery,
-  ShimmerPostItem,
-  ShimmerSocialPost,
-} from "react-shimmer-effects";
+import { addToCart } from "../../features/CartSlice";
+import { ShimmerText } from "react-shimmer-effects";
 
 const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#fff",
@@ -55,7 +34,7 @@ const Item = styled(Paper)(({ theme }) => ({
 }));
 
 const ProductDetail = () => {
-  const selector = useSelector((state) => state.cart);
+  const { total } = useSelector((state) => state.cart);
   const dispatch = useDispatch();
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
@@ -78,7 +57,7 @@ const ProductDetail = () => {
       setLoading(true);
 
       try {
-        const decodedMediaType = decodeURIComponent(mediaType);
+        // const decodedMediaType = decodeURIComponent(mediaType);
         const { data } = await axios.get(
           `https://fakestoreapi.com/products/${id}`
         );
@@ -216,20 +195,51 @@ const ProductDetail = () => {
                 justifyContent: "space-around",
               }}
             >
-              <Btn
-                name="Buy Now"
-                bgColor="#2abbe8"
-                handle={() => {
-                  alert("buy");
-                }}
-              />
+              <div style={{ margin: "0 10px" }}>
+                <Btn
+                  name="Buy Now"
+                  bgColor="#2abbe8"
+                  handle={() => {
+                    toast.info("Buy from Cart");
+                  }}
+                />
+              </div>
 
+              <div
+                style={{
+                  margin: "0 10px",
+                }}
+              >
+                <Btn
+                  name="Add to Cart"
+                  bgColor="#f57224"
+                  handle={() => {
+                    dispatch(addToCart(productDetail));
+                    toast.success("Add to Cart ");
+                    // setTimeout(() => {
+                    //   if (total === 0) {
+                    //     toast.warn(`Your current amount in total is ${price}$`);
+                    //   } else {
+                    //     toast.warn(`Your current amount in total is ${total}$`);
+                    //   }
+                    // }, 500);
+                  }}
+                />
+              </div>
               <Btn
-                name="Add to Cart"
+                name="Navigate To Cart"
                 bgColor="#f57224"
                 handle={() => {
+                  navigate("/cart");
                   dispatch(addToCart(productDetail));
-                  // alert("Product added to cart");
+                  toast.success("Add to Cart ");
+                  // setTimeout(() => {
+                  //   if (total === 0) {
+                  //     toast.warn(`Your current amount in total is ${price}$`);
+                  //   } else {
+                  //     toast.warn(`Your current amount in total is ${total}$`);
+                  //   }
+                  // }, 500);
                 }}
               />
             </div>

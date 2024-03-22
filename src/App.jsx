@@ -10,6 +10,9 @@ import AddNewProduct from "./components/pages/AddNewProduct";
 import ProductDetail from "./components/pages/ProductDetail";
 import Footer from "./components/CartHome/Footer";
 
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
 const App = () => {
   return (
     <Router>
@@ -28,6 +31,7 @@ const App = () => {
           }}
         >
           <NavBarMain />
+          <ToastContainer />
           <Routes>
             <Route path="/" element={<ApnaCartHome />} />
             <Route path="/cart" element={<Cart />} />

@@ -1,5 +1,15 @@
-import { Container, Typography, Button, List, ListItem } from "@mui/material";
+import {
+  Container,
+  Typography,
+  Button,
+  List,
+  ListItem,
+  Stack,
+} from "@mui/material";
 import { blueGrey } from "@mui/material/colors";
+import Breadcrumbs from "@mui/material/Breadcrumbs";
+import NavigateNextIcon from "@mui/icons-material/NavigateNext";
+import Link from "@mui/material/Link";
 import { useSelector, useDispatch } from "react-redux";
 import {
   clearCart,
@@ -9,8 +19,12 @@ import {
   calculateTotals,
 } from "../../features/CartSlice";
 import SingleCartItem from "./SingleCartItem";
+import { toast } from "react-toastify";
+import { useNavigate } from "react-router-dom";
+import Btn from "../utils/Btn";
 
 const Cart = () => {
+  const navigate = useNavigate();
   const dispatch = useDispatch();
   const cartItems = useSelector((state) => state.cart.cartItems);
   // const { image, price,amount } = cartItems;
@@ -27,30 +41,42 @@ const Cart = () => {
 
   const handleClearCart = () => {
     dispatch(clearCart());
+    toast.warn("Cart is cleared now!");
   };
   const handleBuy = () => {
     dispatch(clearCart());
-
-    alert("Thank you for shopping!");
+    toast.success("Thank you for shopping!");
   };
 
-  const handleRemoveItem = (itemId) => {
-    dispatch(removeItem(itemId));
-    dispatch(calculateTotals());
-  };
+  // const handleRemoveItem = (itemId) => {
+  //   dispatch(removeItem(itemId));
+  //   dispatch(calculateTotals());
+  // };
 
-  const handleIncrease = (item) => {
-    dispatch(increase({ id: item.id }));
-  };
+  // const handleIncrease = (item) => {
+  //   dispatch(increase({ id: item.id }));
+  // };
 
-  const handleDecrease = (item) => {
-    if (item.amount === 1) {
-      dispatch(removeItem(item.id));
-    } else {
-      dispatch(decrease({ id: item.id }));
-    }
-    dispatch(calculateTotals());
-  };
+  // const handleDecrease = (item) => {
+  //   if (item.amount === 1) {
+  //     dispatch(removeItem(item.id));
+  //   } else {
+  //     dispatch(decrease({ id: item.id }));
+  //   }
+  //   dispatch(calculateTotals());
+  // };
+
+  const breadcrumbs = [
+    <Link underline="hover" key="1" color="white" onClick={() => navigate("/")}>
+      Home
+    </Link>,
+    <Link underline="hover" key="2" color="white" onClick={() => navigate("/")}>
+      Prodcuts
+    </Link>,
+    <Typography key="3" color={blueGrey[50]}>
+      {/* {title} */}
+    </Typography>,
+  ];
 
   return (
     <Container
@@ -61,6 +87,16 @@ const Cart = () => {
         minHeight: "76vh",
       }}
     >
+      <br />
+      <Stack spacing={2}>
+        <Breadcrumbs
+          separator={<NavigateNextIcon fontSize="small" />}
+          aria-label="breadcrumb"
+        >
+          {breadcrumbs}
+        </Breadcrumbs>
+      </Stack>
+
       <Typography variant="h4" align="center" style={{ marginTop: "20px" }}>
         Your's Cart. Happy Shopping!
       </Typography>
@@ -111,7 +147,7 @@ const Cart = () => {
             <Typography variant="h6">
               Total Price: ${Math.ceil(total)}
             </Typography>
-            <Button
+            {/* <Button
               variant="contained"
               onClick={handleBuy}
               style={{
@@ -119,17 +155,38 @@ const Cart = () => {
               }}
             >
               Buy Now
-            </Button>
-            <Button
+            </Button> */}
+            <div
+              style={{
+                margin: "0 20px",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+              }}
+            >
+              <Btn bgColor="#11a9ad" handle={handleBuy} name="Buy Now" />
+            </div>
+            <div
+              style={{
+                margin: "10px 20px",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+              }}
+            >
+              <Btn
+                bgColor="#11a9ad"
+                handle={handleClearCart}
+                name="Clear Cart"
+              />
+            </div>
+            {/* <Button
               variant="contained"
               color="primary"
               onClick={handleClearCart}
-              style={{
-                margin: "5px 10px",
-              }}
             >
               Clear Cart
-            </Button>
+            </Button> */}
           </div>
         )}
       </div>
